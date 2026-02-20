@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O NAMA | BICIKLOPOPRAVLJAONA</title>
+    <style>
+        /* Import M+ 1m from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap');
+
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --accent: #00ff41; 
+            --path-yellow: #ffcc00;
+            --border: 2px solid #333;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'M PLUS 1m', monospace;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            text-transform: lowercase;
+            position: relative;
+        }
+
+        header, section, .manifesto-box {
+            position: relative;
+            background-color: var(--bg);
+            border: var(--border);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -2px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: none;
+            border: var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'M PLUS 1m', monospace;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        h2 {
+            border-bottom: var(--border);
+            padding-bottom: 5px;
+            color: var(--accent);
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        .manifesto-box {
+            background: repeating-linear-gradient(
+                45deg,
+                #111,
+                #111 10px,
+                #0a0a0a 10px,
+                #0a0a0a 20px
+            );
+            border-color: var(--accent);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(100%) contrast(120%);
+            border: 1px solid #444;
+            display: block;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: var(--border);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>BICIKLOPOPRAVLJAONA</h1>
+    <nav>
+        <a href="index.html" class="btn">[ pocetna ]</a>
+        <a href="#" class="btn" style="background: var(--accent); color: #000;">[ o nama ]</a>
+        <a href="#" class="btn">[ pitanja ]</a>
+        <a href="#" class="btn">[ popravci ]</a>
+    </nav>
+</header>
+
+<div class="container">
+    <main>
+        <section id="tko-smo">
+            <h2>tko_smo_mi?</h2>
+            <p>mi smo volonterski kolektiv. mi nismo servis u klasičnom smislu riječi. ovdje ne ostavljaš bicikl i ne plaćaš radne sate. ovdje učiš kako popraviti svoje prijevozno sredstvo uz našu pomoć i alat.</p>
+            <p>nastali smo iz potrebe za prostorom gdje se znanje dijeli, a ne prodaje. naša misija je jednostavna: što više bicikala na cesti, što manje alata u smeću.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span>1500+</span>
+                    zakrpanih guma
+                </div>
+                <div class="stat-item">
+                    <span>85L</span>
+                    popijene kave
+                </div>
+                <div class="stat-item">
+                    <span>0</span>
+                    šefova
+                </div>
+            </div>
+        </section>
+
+        <section id="manifest">
+            <div class="manifesto-box">
+                <h2>naš_manifest</h2>
+                <ul>
+                    <li>alat pripada onome tko ga koristi.</li>
+                    <li>znanje se množi dijeljenjem.</li>
+                    <li>popravi, ne bacaj.</li>
+                    <li>bicikl je alat oslobođenja.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <aside>
+        <section id="volonteri">
+            <h2>ekipa</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Volonter 1">
+                    <span>marko_mehaničar</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Volonter 2">
+                    <span>ana_lanac</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">uvijek tražimo nove ljude koji se ne boje masti na rukama. svrati četvrtkom.</p>
+        </section>
+
+        <section id="donacije">
+            <h2>donacije</h2>
+            <p>primamo stare dijelove, okvire koji skupljaju prašinu i alat koji vam ne treba. ono što ne možemo iskoristiti, recikliramo odgovorno.</p>
+        </section>
+    </aside>
+</div>
+
+<footer>
+    <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
+</footer>
+
+</body>
+</html>
