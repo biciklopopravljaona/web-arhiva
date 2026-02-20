@@ -1,31 +1,41 @@
 backend:
   name: git-gateway
   branch: main
+  repo: biciklopopravljaona/REPLACE_WITH_YOUR_REPO_NAME
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
+
+# This ensures the newest blog posts stay on top
+sortable_fields: ['date']
 
 collections:
   - name: "blog"
     label: "Novosti (Blog)"
     files:
-      - name: "posts"
-        label: "Svi Postovi"
+      - name: "posts_hr"
+        label: "Hrvatski Postovi"
         file: "data/blog.json"
-        fields:
+        fields: &blog_fields
           - name: "entries"
             label: "Postovi"
             widget: "list"
             fields:
               - {label: "Naslov", name: "title", widget: "string"}
-              - {label: "Datum", name: "date", widget: "date"}
+              - {label: "Datum", name: "date", widget: "date", format: "YYYY-MM-DD"}
               - {label: "Sadržaj", name: "content", widget: "text"}
+      
+      - name: "posts_en"
+        label: "English Posts"
+        file: "data/blog_en.json" # Assumes you have an English blog file
+        fields: *blog_fields
 
-  - name: "touring"
-    label: "Micro-Touring"
+  - name: "shared_content"
+    label: "Shared (HR & EN)"
+    description: "Everything here updates both English and Croatian pages automatically"
     files:
       - name: "tours"
-        label: "Sve Ture"
+        label: "Micro-Touring"
         file: "data/tours.json"
         fields:
           - name: "entries"
@@ -35,3 +45,25 @@ collections:
               - {label: "Naslov Ture", name: "title", widget: "string"}
               - {label: "Opis", name: "text", widget: "text"}
               - {label: "Glavna Slika", name: "image", widget: "image"}
+
+      - name: "galerija"
+        label: "Galerija"
+        file: "data/gallery.json"
+        fields:
+          - name: "photos"
+            label: "Slike"
+            widget: "list"
+            fields:
+              - {label: "Naslov slike", name: "title", widget: "string"}
+              - {label: "Slika", name: "image", widget: "image"}
+
+      - name: "strip"
+        label: "Strip"
+        file: "data/strip.json"
+        fields:
+          - name: "episodes"
+            label: "Epizode"
+            widget: "list"
+            fields:
+              - {label: "Naslov Epizode", name: "title", widget: "string"}
+              - {label: "Strip Slika", name: "image", widget: "image"}
