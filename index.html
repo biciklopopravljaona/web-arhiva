@@ -1,338 +1,579 @@
 <!DOCTYPE html>
+
 <html lang="hr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BICIKLOPOPRAVLJAONA</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap');
 
-        :root {
-            --bg: #0a0a0a;
-            --text: #e0e0e0;
-            --accent: #00ff41; 
-            --border: 2px solid #333;
-        }
+    <meta charset="UTF-8">
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'M PLUS 1m', monospace;
-            line-height: 1.4;
-            margin: 0;
-            padding: 20px;
-            text-transform: lowercase;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        header, section, .archive-item {
-            background-color: var(--bg);
-            border: var(--border);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+    <title>BICIKLOPOPRAVLJAONA</title>
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    <style>
 
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: -2px;
-            color: var(--accent);
-            font-weight: 700;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap');
 
-        nav { display: flex; gap: 10px; }
 
-        .btn {
-            background: none;
-            border: var(--border);
-            color: var(--text);
-            padding: 8px 12px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
 
-        .btn:hover { background: var(--accent); color: #000; }
-        .btn.active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent); }
+        :root {
 
-        /* Section Link Styles */
-        .section-link { text-decoration: none; color: inherit; display: block; }
-        .section-link h2:hover { background: var(--accent); color: #000; cursor: pointer; }
+            --bg: #0a0a0a;
 
-        .container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
+            --text: #e0e0e0;
 
-        h2 {
-            border-bottom: var(--border);
-            padding-bottom: 5px;
-            color: var(--accent);
-            margin-top: 0;
-            font-weight: 700;
-            transition: 0.2s;
-        }
+            --accent: #00ff41; 
 
-        img {
-            max-width: 100%;
-            height: auto;
-            filter: grayscale(100%) contrast(120%);
-            border: 1px solid #444;
-            display: block;
-            margin-bottom: 10px;
-        }
+            --border: 2px solid #333;
 
-        img:hover { filter: none; border-color: var(--accent); }
+        }
 
-        /* Gallery: Stripes Removed */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 15px;
-            border: 1px solid #444;
-            background: #111; /* Clean dark background */
-        }
 
-        .gallery-grid img { margin-bottom: 0; border: 2px solid #000; }
 
-        .comic-frame { background: #fff; padding: 10px; border: 4px solid #000; color: #000; }
-        .comic-frame img { filter: none; border: 2px solid #000; }
-        .comic-caption { font-weight: 700; text-align: center; font-size: 1.2rem; margin-top: 10px; }
+        body {
 
-        .tour-images { display: flex; gap: 10px; margin-top: 15px; }
-        .tour-images img { width: 48%; }
+            background-color: var(--bg);
 
-        .archive-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border: none;
-            padding: 0;
-        }
+            color: var(--text);
 
-        .archive-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-        .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
-        .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
+            font-family: 'M PLUS 1m', monospace;
 
-        .btn-sm {
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 2px 8px;
-            text-decoration: none;
-            font-size: 0.7rem;
-        }
+            line-height: 1.4;
 
-        footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
+            margin: 0;
 
-        /* --- MOBILE OPTIMIZATION --- */
-        @media (max-width: 768px) {
-            header { flex-wrap: nowrap; padding: 10px 15px; position: relative; }
-            h1 { font-size: 1.4rem; letter-spacing: -1px; } /* Smaller title */
-            
-            .hamburger { display: block; cursor: pointer; border: var(--border); color: var(--accent); padding: 5px 12px; font-size: 1.4rem; }
-            
-            nav { 
-    display: none; 
-    flex-direction: column; 
-    width: 100%; 
-    background: var(--bg);
-    border: var(--border);
-    padding: 10px;
-    position: absolute; 
-    top: 100%; /* Changed from 80px to align perfectly */
-    left: 0;
-    z-index: 100;
-    box-sizing: border-box; /* Ensures padding doesn't push width over 100% */
-}
-            nav.open { display: flex; }
+            padding: 20px;
 
-            .container { display: flex; flex-direction: column; }
-            main, aside { display: contents; }
+            text-transform: lowercase;
 
-            /* Reordering sections for mobile scroll */
-            #lokacija { order: 1; }
-            #novosti { order: 2; }
-            #galerija-link { order: 3; }
-            #strip-link { order: 4; }
-            #tour-link { order: 5; }
-            #arhiva { order: 6; }
+        }
 
-            .archive-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+
+
+        header, section, .archive-item {
+
+            background-color: var(--bg);
+
+            border: var(--border);
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+        }
+
+
+
+        h1 {
+
+            font-size: 3rem;
+
+            margin: 0;
+
+            letter-spacing: -2px;
+
+            color: var(--accent);
+
+            font-weight: 700;
+
+        }
+
+
+
+        nav { display: flex; gap: 10px; }
+
+
+
+        .btn {
+
+            background: none;
+
+            border: var(--border);
+
+            color: var(--text);
+
+            padding: 8px 12px;
+
+            text-decoration: none;
+
+            font-size: 0.9rem;
+
+        }
+
+
+
+        .btn:hover { background: var(--accent); color: #000; }
+
+        .btn.active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent); }
+
+
+
+        /* Section Link Styles */
+
+        .section-link { text-decoration: none; color: inherit; display: block; }
+
+        .section-link h2:hover { background: var(--accent); color: #000; cursor: pointer; }
+
+
+
+        .container {
+
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            gap: 20px;
+
+        }
+
+
+
+        h2 {
+
+            border-bottom: var(--border);
+
+            padding-bottom: 5px;
+
+            color: var(--accent);
+
+            margin-top: 0;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+
+        }
+
+
+
+        img {
+
+            max-width: 100%;
+
+            height: auto;
+
+            filter: grayscale(100%) contrast(120%);
+
+            border: 1px solid #444;
+
+            display: block;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        img:hover { filter: none; border-color: var(--accent); }
+
+
+
+        /* Gallery: Stripes Removed */
+
+        .gallery-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+
+            padding: 15px;
+
+            border: 1px solid #444;
+
+            background: #111; /* Clean dark background */
+
+        }
+
+
+
+        .gallery-grid img { margin-bottom: 0; border: 2px solid #000; }
+
+
+
+        .comic-frame { background: #fff; padding: 10px; border: 4px solid #000; color: #000; }
+
+        .comic-frame img { filter: none; border: 2px solid #000; }
+
+        .comic-caption { font-weight: 700; text-align: center; font-size: 1.2rem; margin-top: 10px; }
+
+
+
+        .tour-images { display: flex; gap: 10px; margin-top: 15px; }
+
+        .tour-images img { width: 48%; }
+
+
+
+        .archive-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+
+            border: none;
+
+            padding: 0;
+
+        }
+
+
+
+        .archive-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+
+        .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
+
+        .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
+
+
+
+        .btn-sm {
+
+            border: 1px solid var(--accent);
+
+            color: var(--accent);
+
+            padding: 2px 8px;
+
+            text-decoration: none;
+
+            font-size: 0.7rem;
+
+        }
+
+
+
+        footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
+
+
+
+        @media (max-width: 768px) {
+
+            .container { grid-template-columns: 1fr; }
+
+            .archive-grid { grid-template-columns: repeat(2, 1fr); }
+
+        }
+
+    </style>
+
 </head>
 
+
+
 <body>
+
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
+
+
 <header>
-    <h1>BICIKLOPOPRAVLJAONA</h1>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <nav id="main-nav"> <a href="index.html" class="btn active">[ početna ]</a>
-        <a href="about.html" class="btn">[ o nama ]</a>
-        <a href="pitanja.html" class="btn">[ pitanja ]</a>
-        <a href="EN.html" class="btn">[ en ]</a>
-    </nav>
+
+    <h1>BICIKLOPOPRAVLJAONA</h1>
+
+    <nav>
+
+        <a href="index.html" class="btn active">[ pocetna ]</a>
+
+        <a href="about.html" class="btn">[ o nama ]</a>
+
+        <a href="pitanja.html" class="btn">[ pitanja ]</a>
+
+        <a href="EN.html" class="btn">[ en ]</a>
+
+    </nav>
+
 </header>
 
+
+
 <div class="container">
-    <main>
-        <section id="novosti">
-            <div id="latest-post">
-                <h2>novosti_iz_radione: 2026.02.08</h2>
-                <h3>"steel is real, but carbon is a phantom"</h3>
-                <p>yesterday we stripped a 1980s peugeot down to the soul. the bottom bracket was seized by decades of rust, but with enough patience (and a very long pipe), it gave way. stop buying plastic. start restoring steel.</p>
-            </div>
-        </section>
 
-        <a href="strip.html" class="section-link" id="strip-link">
-            <section id="strip">
-                <h2>tjedni_strip</h2>
-                <div id="comic-container" class="comic-frame">
-                    <img src="https://m2zk.neocities.org/bicpopstrip.jpg" alt="Bicpop Comic Strip">
-                    <div class="comic-caption">"tjedni strip"</div>
-                </div>
-            </section>
-        </a>
+    <main>
 
-        <a href="microtouring.html" class="section-link" id="tour-link">
-            <section id="micro-touring">
-                <h2>micro_touring</h2>
-                <div id="tour-content">
-                    <p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss. here are the captures from the field:</p>
-                    <div class="tour-images">
-                        <img src="https://m2zk.neocities.org/zine/sljeme.jpg" alt="Touring Photo 1">
-                        <img src="https://m2zk.neocities.org/zine/samobor.jpg" alt="Touring Photo 2">
-                    </div>
-                </div>
-            </section>
-        </a>
-    </main>
+        <section id="novosti">
 
-    <aside>
-        <section id="lokacija">
-            <h2>lokacija</h2>
-            <p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p>
-            <p>cet: 18:00 - 20:00</p>
-        </section>
+            <div id="latest-post">
 
-        <a href="galerija.html" class="section-link" id="galerija-link">
-            <section id="galerija">
-                <h2>galerija</h2>
-                <div id="gallery-container" class="gallery-grid">
-                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 1">
-                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 2">
-                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 3">
-                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 4">
-                </div>
-            </section>
-        </a>
-    </aside>
+                <h2>novosti_iz_radione: 2026.02.08</h2>
+
+                <h3>"steel is real, but carbon is a phantom"</h3>
+
+                <p>yesterday we stripped a 1980s peugeot down to the soul. the bottom bracket was seized by decades of rust, but with enough patience (and a very long pipe), it gave way. stop buying plastic. start restoring steel.</p>
+
+            </div>
+
+        </section>
+
+
+
+        <a href="strip.html" class="section-link">
+
+            <section id="strip">
+
+                <h2>tjedni_strip</h2>
+
+                <div id="comic-container" class="comic-frame">
+
+                    <img src="https://m2zk.neocities.org/bicpopstrip.jpg" alt="Bicpop Comic Strip">
+
+                    <div class="comic-caption">"tjedni strip"</div>
+
+                </div>
+
+            </section>
+
+        </a>
+
+
+
+        <a href="microtouring.html" class="section-link">
+
+            <section id="micro-touring">
+
+                <h2>micro_touring</h2>
+
+                <div id="tour-content">
+
+                    <p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss. here are the captures from the field:</p>
+
+                    <div class="tour-images">
+
+                        <img src="https://m2zk.neocities.org/zine/sljeme.jpg" alt="Touring Photo 1">
+
+                        <img src="https://m2zk.neocities.org/zine/samobor.jpg" alt="Touring Photo 2">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </a>
+
+    </main>
+
+
+
+    <aside>
+
+        <section id="lokacija">
+
+            <h2>lokacija</h2>
+
+            <p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p>
+
+            <p>cet: 18:00 - 20:00</p>
+
+        </section>
+
+
+
+        <a href="galerija.html" class="section-link">
+
+            <section id="galerija">
+
+                <h2>galerija</h2>
+
+                <div id="gallery-container" class="gallery-grid">
+
+                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 1">
+
+                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 2">
+
+                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 3">
+
+                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 4">
+
+                </div>
+
+            </section>
+
+        </a>
+
+    </aside>
+
 </div>
 
+
+
 <section id="arhiva">
-    <div class="archive-header">
-        <h2>stari_logovi</h2>
-        <nav>
-            <a href="#" class="btn-sm">&lt;&lt; nazad</a>
-            <a href="#" class="btn-sm">naprijed &gt;&gt;</a>
-        </nav>
-    </div>
-    <div id="archive-container" class="archive-grid">
-        <div class="archive-item">
-            <span class="date">2026.01.20</span>
-            <h4>kako_zakrpati_gumu</h4>
-            <p class="archive-preview">kratki vodič o tome kako pronaći rupu koristeći samo kantu vode...</p>
-        </div>
-    </div>
+
+    <div class="archive-header">
+
+        <h2>stari_logovi</h2>
+
+        <nav>
+
+            <a href="#" class="btn-sm">&lt;&lt; nazad</a>
+
+            <a href="#" class="btn-sm">naprijed &gt;&gt;</a>
+
+        </nav>
+
+    </div>
+
+    <div id="archive-container" class="archive-grid">
+
+        <div class="archive-item">
+
+            <span class="date">2026.01.20</span>
+
+            <h4>kako_zakrpati_gumu</h4>
+
+            <p class="archive-preview">kratki vodič o tome kako pronaći rupu koristeći samo kantu vode...</p>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+
 <footer>
-    <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
+
+    <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
+
 </footer>
 
+
+
 <script>
-    // 1. Menu Toggle (Defined once)
-    function toggleMenu() {
-        const nav = document.getElementById('main-nav');
-        nav.classList.toggle('open');
-    }
 
-    // 2. Netlify CMS Identity Redirect
-    if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-            if (!user) {
-                window.netlifyIdentity.on("login", () => {
-                    document.location.href = "/admin/";
-                });
-            }
-        });
-    } // <-- Added missing bracket here
+    // Blog logic
 
-    // 3. Blog logic
-    fetch('/data/blog.json').then(res => res.json()).then(data => {
-        const posts = data.entries || [];
-        if(posts.length > 0) {
-            const latest = posts[0];
-            document.getElementById('latest-post').innerHTML = `
-                <h2>novosti iz radione: ${latest.date}</h2>
-                <h3>"${latest.title}"</h3>
-                <p>${latest.content}</p>
-            `;
-            const archiveHtml = posts.slice(1).map(post => `
-                <div class="archive-item">
-                    <span class="date">${post.date}</span>
-                    <h4>${post.title}</h4>
-                    <p class="archive-preview">${post.content}</p>
-                </div>
-            `).join('');
-            if(archiveHtml) document.getElementById('archive-container').innerHTML = archiveHtml;
-        }
-    });
+    fetch('/data/blog.json').then(res => res.json()).then(data => {
 
-    // 4. Strip logic
-    fetch('/data/strip.json').then(res => res.json()).then(data => {
-        const lastStrip = (data.episodes || []).slice(-1)[0];
-        if(lastStrip) {
-            document.getElementById('comic-container').innerHTML = `
-                <img src="${lastStrip.image}" alt="${lastStrip.title}">
-                <div class="comic-caption">"${lastStrip.title}"</div>
-            `;
-        }
-    });
+        const posts = data.entries || [];
 
-    // 5. Touring logic
-    fetch('/data/tours.json').then(res => res.json()).then(data => {
-        const tours = data.entries || [];
-        const latest = tours[tours.length - 1];
-        if(latest) {
-            document.getElementById('tour-content').innerHTML = `
-                <p>${latest.text}</p>
-                <div class="tour-images">
-                    <img src="${latest.image}" alt="Tour image">
-                </div>
-            `;
-        }
-    });
+        if(posts.length > 0) {
 
-    // 6. Gallery logic
-    fetch('/data/gallery.json').then(res => res.json()).then(data => {
-        const photos = (data.photos || []).slice(-4);
-        if(photos.length > 0) {
-            document.getElementById('gallery-container').innerHTML = photos.map(p => `
-                <img src="${p.image}" alt="${p.title}">
-            `).join('');
-        }
-    });
+            const latest = posts[0];
+
+            document.getElementById('latest-post').innerHTML = `
+
+                <h2>novosti iz radione: ${latest.date}</h2>
+
+                <h3>"${latest.title}"</h3>
+
+                <p>${latest.content}</p>
+
+            `;
+
+            const archiveHtml = posts.slice(1).map(post => `
+
+                <div class="archive-item">
+
+                    <span class="date">${post.date}</span>
+
+                    <h4>${post.title}</h4>
+
+                    <p class="archive-preview">${post.content}</p>
+
+                </div>
+
+            `).join('');
+
+            if(archiveHtml) document.getElementById('archive-container').innerHTML = archiveHtml;
+
+        }
+
+    });
+
+
+
+    // Strip logic
+
+    fetch('/data/strip.json').then(res => res.json()).then(data => {
+
+        const lastStrip = (data.episodes || []).slice(-1)[0];
+
+        if(lastStrip) {
+
+            document.getElementById('comic-container').innerHTML = `
+
+                <img src="${lastStrip.image}" alt="${lastStrip.title}">
+
+                <div class="comic-caption">"${lastStrip.title}"</div>
+
+            `;
+
+        }
+
+    });
+
+
+
+    // Touring logic - Shows up to 2 images
+
+    fetch('/data/tours.json').then(res => res.json()).then(data => {
+
+        const tours = data.entries || [];
+
+        const latest = tours[tours.length - 1];
+
+        if(latest) {
+
+            document.getElementById('tour-content').innerHTML = `
+
+                <p>${latest.text}</p>
+
+                <div class="tour-images">
+
+                    <img src="${latest.image}" alt="Tour image">
+
+                </div>
+
+            `;
+
+        }
+
+    });
+
+
+
+    // Gallery logic
+
+    fetch('/data/gallery.json').then(res => res.json()).then(data => {
+
+        const photos = (data.photos || []).slice(-4);
+
+        if(photos.length > 0) {
+
+            document.getElementById('gallery-container').innerHTML = photos.map(p => `
+
+                <img src="${p.image}" alt="${p.title}">
+
+            `).join('');
+
+        }
+
+    });
+
 </script>
+
 </body>
+
 </html>
