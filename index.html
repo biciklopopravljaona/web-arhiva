@@ -141,16 +141,18 @@
             .hamburger { display: block; cursor: pointer; border: var(--border); color: var(--accent); padding: 5px 12px; font-size: 1.4rem; }
             
             nav { 
-                display: none; 
-                flex-direction: column; 
-                width: calc(100% - 40px); 
-                position: absolute;
-                top: 100%; left: 20px;
-                background: var(--bg);
-                border: var(--border);
-                z-index: 100;
-                padding: 10px;
-            }
+    display: none; 
+    flex-direction: column; 
+    width: 100%; 
+    background: var(--bg);
+    border: var(--border);
+    padding: 10px;
+    position: absolute; 
+    top: 100%; /* Changed from 80px to align perfectly */
+    left: 0;
+    z-index: 100;
+    box-sizing: border-box; /* Ensures padding doesn't push width over 100% */
+}
             nav.open { display: flex; }
 
             .container { display: flex; flex-direction: column; }
@@ -174,8 +176,8 @@
 
 <header>
     <h1>BICIKLOPOPRAVLJAONA</h1>
-    <div class="hamburger" onclick="toggleMenu()">☰</div> <nav id="main-nav">
-        <a href="index.html" class="btn active">[ pocetna ]</a>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav id="main-nav"> <a href="index.html" class="btn active">[ početna ]</a>
         <a href="about.html" class="btn">[ o nama ]</a>
         <a href="pitanja.html" class="btn">[ pitanja ]</a>
         <a href="EN.html" class="btn">[ en ]</a>
@@ -259,13 +261,13 @@
 </footer>
 
 <script>
-
-    // 1. Menu Toggle
+    // 1. Menu Toggle (Defined once)
     function toggleMenu() {
-        document.getElementById('main-nav').classList.toggle('open');
+        const nav = document.getElementById('main-nav');
+        nav.classList.toggle('open');
     }
 
-    // 2. Netlify CMS Identity Redirect (Crucial for admin login)
+    // 2. Netlify CMS Identity Redirect
     if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
             if (!user) {
@@ -274,7 +276,9 @@
                 });
             }
         });
-    // Blog logic
+    } // <-- Added missing bracket here
+
+    // 3. Blog logic
     fetch('/data/blog.json').then(res => res.json()).then(data => {
         const posts = data.entries || [];
         if(posts.length > 0) {
@@ -295,7 +299,7 @@
         }
     });
 
-    // Strip logic
+    // 4. Strip logic
     fetch('/data/strip.json').then(res => res.json()).then(data => {
         const lastStrip = (data.episodes || []).slice(-1)[0];
         if(lastStrip) {
@@ -306,7 +310,7 @@
         }
     });
 
-    // Touring logic - Shows up to 2 images
+    // 5. Touring logic
     fetch('/data/tours.json').then(res => res.json()).then(data => {
         const tours = data.entries || [];
         const latest = tours[tours.length - 1];
@@ -320,7 +324,7 @@
         }
     });
 
-    // Gallery logic
+    // 6. Gallery logic
     fetch('/data/gallery.json').then(res => res.json()).then(data => {
         const photos = (data.photos || []).slice(-4);
         if(photos.length > 0) {
