@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Novosti (Blog)"
+    files:
+      - name: "posts"
+        label: "Svi Postovi"
+        file: "data/blog.json"
+        fields:
+          - name: "entries"
+            label: "Postovi"
+            widget: "list"
+            fields:
+              - {label: "Naslov", name: "title", widget: "string"}
+              - {label: "Datum", name: "date", widget: "date"}
+              - {label: "Sadržaj", name: "content", widget: "text"}
+
+  - name: "touring"
+    label: "Micro-Touring"
+    files:
+      - name: "tours"
+        label: "Sve Ture"
+        file: "data/tours.json"
+        fields:
+          - name: "entries"
+            label: "Ture"
+            widget: "list"
+            fields:
+              - {label: "Naslov Ture", name: "title", widget: "string"}
+              - {label: "Opis", name: "text", widget: "text"}
+              - {label: "Glavna Slika", name: "image", widget: "image"}
