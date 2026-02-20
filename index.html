@@ -133,9 +133,38 @@
 
         footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
 
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            .archive-grid { grid-template-columns: repeat(2, 1fr); }
+            header { flex-wrap: nowrap; padding: 10px 15px; position: relative; }
+            h1 { font-size: 1.4rem; letter-spacing: -1px; } /* Smaller title */
+            
+            .hamburger { display: block; cursor: pointer; border: var(--border); color: var(--accent); padding: 5px 12px; font-size: 1.4rem; }
+            
+            nav { 
+                display: none; 
+                flex-direction: column; 
+                width: calc(100% - 40px); 
+                position: absolute;
+                top: 100%; left: 20px;
+                background: var(--bg);
+                border: var(--border);
+                z-index: 100;
+                padding: 10px;
+            }
+            nav.open { display: flex; }
+
+            .container { display: flex; flex-direction: column; }
+            main, aside { display: contents; }
+
+            /* Reordering sections for mobile scroll */
+            #lokacija { order: 1; }
+            #novosti { order: 2; }
+            #galerija-link { order: 3; }
+            #strip-link { order: 4; }
+            #tour-link { order: 5; }
+            #arhiva { order: 6; }
+
+            .archive-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -145,7 +174,7 @@
 
 <header>
     <h1>BICIKLOPOPRAVLJAONA</h1>
-    <nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div> <nav id="main-nav">
         <a href="index.html" class="btn active">[ pocetna ]</a>
         <a href="about.html" class="btn">[ o nama ]</a>
         <a href="pitanja.html" class="btn">[ pitanja ]</a>
@@ -163,7 +192,7 @@
             </div>
         </section>
 
-        <a href="strip.html" class="section-link">
+        <a href="strip.html" class="section-link" id="strip-link">
             <section id="strip">
                 <h2>tjedni_strip</h2>
                 <div id="comic-container" class="comic-frame">
@@ -173,7 +202,7 @@
             </section>
         </a>
 
-        <a href="microtouring.html" class="section-link">
+        <a href="microtouring.html" class="section-link" id="tour-link">
             <section id="micro-touring">
                 <h2>micro_touring</h2>
                 <div id="tour-content">
@@ -194,7 +223,7 @@
             <p>cet: 18:00 - 20:00</p>
         </section>
 
-        <a href="galerija.html" class="section-link">
+        <a href="galerija.html" class="section-link" id="galerija-link">
             <section id="galerija">
                 <h2>galerija</h2>
                 <div id="gallery-container" class="gallery-grid">
@@ -230,6 +259,21 @@
 </footer>
 
 <script>
+
+    // 1. Menu Toggle
+    function toggleMenu() {
+        document.getElementById('main-nav').classList.toggle('open');
+    }
+
+    // 2. Netlify CMS Identity Redirect (Crucial for admin login)
+    if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                });
+            }
+        });
     // Blog logic
     fetch('/data/blog.json').then(res => res.json()).then(data => {
         const posts = data.entries || [];
