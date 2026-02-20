@@ -71,6 +71,13 @@
             background: var(--accent);
             color: #000;
         }
+        
+        /* This goes in your <style> area */
+.btn.active {
+    background: var(--accent) !important;
+    color: #000 !important;
+    border-color: var(--accent);
+}
 
         .container {
             display: grid;
@@ -161,9 +168,9 @@
     <h1>BICIKLOPOPRAVLJAONA</h1>
     <nav>
         <a href="index.html" class="btn">[ pocetna ]</a>
-        <a href="#" class="btn" style="background: var(--accent); color: #000;">[ o nama ]</a>
-        <a href="#" class="btn">[ pitanja ]</a>
-        <a href="#" class="btn">[ popravci ]</a>
+        <a href="about.html" class="btn active">[ o nama ]</a>
+        <a href="pitanja.html" class="btn">[ pitanja ]</a>
+        <a href="/en/index.html" class="btn">[ en ]</a>
     </nav>
 </header>
 
