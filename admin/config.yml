@@ -6,7 +6,6 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# This ensures the newest blog posts stay on top
 sortable_fields: ['date']
 
 collections:
@@ -27,12 +26,11 @@ collections:
       
       - name: "posts_en"
         label: "English Posts"
-        file: "data/blog_en.json" # Assumes you have an English blog file
+        file: "data/blog_en.json"
         fields: *blog_fields
 
   - name: "shared_content"
     label: "Shared (HR & EN)"
-    description: "Everything here updates both English and Croatian pages automatically"
     files:
       - name: "tours"
         label: "Micro-Touring"
