@@ -51,11 +51,11 @@ collections:
         file: "data/gallery.json"
         fields:
           - name: "photos"
-            label: "Slike"
+            label: "Fotke"
             widget: "list"
             fields:
-              - {label: "Naslov slike", name: "title", widget: "string"}
-              - {label: "Slika", name: "image", widget: "image"}
+              - {label: "Naslov fotke", name: "title", widget: "string"}
+              - {label: "Fotka", name: "image", widget: "image"}
 
       - name: "strip"
         label: "Strip"
