@@ -35,8 +35,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 20px;
+            position: relative; /* Required for mobile menu positioning */
         }
 
         h1 {
@@ -47,7 +47,18 @@
             font-weight: 700;
         }
 
+        /* --- DESKTOP NAV & HAMBURGER --- */
         nav { display: flex; gap: 10px; }
+
+        .hamburger { 
+            display: none; /* Hidden on desktop */
+            cursor: pointer; 
+            background: none;
+            border: var(--border); 
+            color: var(--accent); 
+            padding: 5px 12px; 
+            font-size: 1.4rem; 
+        }
 
         .btn {
             background: none;
@@ -91,14 +102,13 @@
 
         img:hover { filter: none; border-color: var(--accent); }
 
-        /* Gallery: Stripes Removed */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             padding: 15px;
             border: 1px solid #444;
-            background: #111; /* Clean dark background */
+            background: #111;
         }
 
         .gallery-grid img { margin-bottom: 0; border: 2px solid #000; }
@@ -135,24 +145,24 @@
 
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            header { flex-wrap: nowrap; padding: 10px 15px; position: relative; }
-            h1 { font-size: 1.4rem; letter-spacing: -1px; } /* Smaller title */
+            header { flex-wrap: nowrap; padding: 10px 15px; }
+            h1 { font-size: 1.4rem; letter-spacing: -1px; } 
             
-            .hamburger { display: block; cursor: pointer; border: var(--border); color: var(--accent); padding: 5px 12px; font-size: 1.4rem; }
+            .hamburger { display: block; } /* Now visible only on mobile */
             
             nav { 
-    display: none; 
-    flex-direction: column; 
-    width: 100%; 
-    background: var(--bg);
-    border: var(--border);
-    padding: 10px;
-    position: absolute; 
-    top: 100%; /* Changed from 80px to align perfectly */
-    left: 0;
-    z-index: 100;
-    box-sizing: border-box; /* Ensures padding doesn't push width over 100% */
-}
+                display: none; 
+                flex-direction: column; 
+                width: 100%; 
+                background: var(--bg);
+                border: var(--border);
+                padding: 10px;
+                position: absolute; 
+                top: 100%; 
+                left: 0;
+                z-index: 100;
+                box-sizing: border-box; 
+            }
             nav.open { display: flex; }
 
             .container { display: flex; flex-direction: column; }
@@ -177,7 +187,8 @@
 <header>
     <h1>BICIKLOPOPRAVLJAONA</h1>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <nav id="main-nav"> <a href="index.html" class="btn active">[ početna ]</a>
+    <nav id="main-nav"> 
+        <a href="index.html" class="btn active">[ početna ]</a>
         <a href="about.html" class="btn">[ o nama ]</a>
         <a href="pitanja.html" class="btn">[ pitanja ]</a>
         <a href="EN.html" class="btn">[ en ]</a>
@@ -189,8 +200,7 @@
         <section id="novosti">
             <div id="latest-post">
                 <h2>novosti_iz_radione: 2026.02.08</h2>
-                <h3>"steel is real, but carbon is a phantom"</h3>
-                <p>yesterday we stripped a 1980s peugeot down to the soul. the bottom bracket was seized by decades of rust, but with enough patience (and a very long pipe), it gave way. stop buying plastic. start restoring steel.</p>
+                <p>učitavam novosti...</p>
             </div>
         </section>
 
@@ -208,11 +218,7 @@
             <section id="micro-touring">
                 <h2>micro_touring</h2>
                 <div id="tour-content">
-                    <p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss. here are the captures from the field:</p>
-                    <div class="tour-images">
-                        <img src="https://m2zk.neocities.org/zine/sljeme.jpg" alt="Touring Photo 1">
-                        <img src="https://m2zk.neocities.org/zine/samobor.jpg" alt="Touring Photo 2">
-                    </div>
+                    <p>učitavam touring...</p>
                 </div>
             </section>
         </a>
@@ -221,19 +227,15 @@
     <aside>
         <section id="lokacija">
             <h2>lokacija</h2>
-            <p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p>
-            <p>cet: 18:00 - 20:00</p>
+            <p>gundulićeva 1<br>dvorište<br>10000 zagreb</p>
+            <p>čet: 18:00 - 20:00</p>
         </section>
 
         <a href="galerija.html" class="section-link" id="galerija-link">
             <section id="galerija">
                 <h2>galerija</h2>
                 <div id="gallery-container" class="gallery-grid">
-                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 1">
-                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 2">
-                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 3">
-                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 4">
-                </div>
+                    </div>
             </section>
         </a>
     </aside>
@@ -248,12 +250,7 @@
         </nav>
     </div>
     <div id="archive-container" class="archive-grid">
-        <div class="archive-item">
-            <span class="date">2026.01.20</span>
-            <h4>kako_zakrpati_gumu</h4>
-            <p class="archive-preview">kratki vodič o tome kako pronaći rupu koristeći samo kantu vode...</p>
         </div>
-    </div>
 </section>
 
 <footer>
@@ -261,7 +258,7 @@
 </footer>
 
 <script>
-    // 1. Menu Toggle (Defined once)
+    // 1. Menu Toggle
     function toggleMenu() {
         const nav = document.getElementById('main-nav');
         nav.classList.toggle('open');
@@ -276,9 +273,9 @@
                 });
             }
         });
-    } // <-- Added missing bracket here
+    }
 
-    // 3. Blog logic
+    // 3. Blog & Archive Logic
     fetch('/data/blog.json').then(res => res.json()).then(data => {
         const posts = data.entries || [];
         if(posts.length > 0) {
@@ -297,7 +294,7 @@
             `).join('');
             if(archiveHtml) document.getElementById('archive-container').innerHTML = archiveHtml;
         }
-    });
+    }).catch(e => console.log("Blog error"));
 
     // 4. Strip logic
     fetch('/data/strip.json').then(res => res.json()).then(data => {
@@ -308,7 +305,7 @@
                 <div class="comic-caption">"${lastStrip.title}"</div>
             `;
         }
-    });
+    }).catch(e => console.log("Strip error"));
 
     // 5. Touring logic
     fetch('/data/tours.json').then(res => res.json()).then(data => {
@@ -322,7 +319,7 @@
                 </div>
             `;
         }
-    });
+    }).catch(e => console.log("Tour error"));
 
     // 6. Gallery logic
     fetch('/data/gallery.json').then(res => res.json()).then(data => {
@@ -332,7 +329,7 @@
                 <img src="${p.image}" alt="${p.title}">
             `).join('');
         }
-    });
+    }).catch(e => console.log("Gallery error"));
 </script>
 </body>
 </html>
