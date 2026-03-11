@@ -128,7 +128,12 @@
             padding: 0;
         }
 
-        .archive-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .archive-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* This forces exactly two boxes per row */
+    gap: 15px; 
+    align-items: start;            /* This makes boxes shrink to the height of their text */
+}
         .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
         .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
 
@@ -170,10 +175,11 @@
 
             #lokacija { order: 1; }
             #novosti { order: 2; }
-            #galerija-link { order: 3; }
-            #strip-link { order: 4; }
-            #tour-link { order: 5; }
-            #arhiva { order: 6; }
+            #arhiva { order: 3; }
+            #galerija-link { order: 4; }
+            #strip-link { order: 5; }
+            #tour-link { order: 6; }
+            
 
             .archive-grid { grid-template-columns: 1fr; }
         }
@@ -203,6 +209,31 @@
                 <p>yesterday we stripped a 1980s peugeot down to the soul. the bottom bracket was seized by decades of rust, but with enough patience (and a very long pipe), it gave way. stop buying plastic. start restoring steel.</p>
             </div>
         </section>
+        
+        <section id="arhiva">
+    <div class="archive-header">
+        <h2>stari_logovi</h2>
+        <nav>
+            <a href="#" class="btn-sm">&lt;&lt; nazad</a>
+            <a href="#" class="btn-sm">naprijed &gt;&gt;</a>
+        </nav>
+    </div>
+    
+    <div id="archive-container" class="archive-grid">
+        <div class="archive-item">
+            <span class="date">2026.01.20</span>
+            <h4>kako_zakrpati_gumu</h4>
+            <p class="archive-preview">kratki vodič o tome kako pronaći rupu koristeći samo kantu vode. kratki vodič o tome kako pronaći rupu koristeći samo kantu vode.</p>
+        </div>
+
+        <div class="archive-item">
+            <span class="date">2026.01.18</span>
+            <h4>centriranje_kotaca</h4>
+            <p class="archive-preview">osnove zatezanja žbica i kako izravnati "osmicu" bez skupih alata u vlastitoj garaži.</p>
+        </div>
+    </div>
+</section>
+     
 
         <a href="strip.html" class="section-link" id="strip-link">
             <section id="strip">
@@ -226,6 +257,9 @@
                 </div>
             </section>
         </a>
+        
+       
+        
     </main>
 
     <aside>
@@ -249,22 +283,6 @@
     </aside>
 </div>
 
-<section id="arhiva">
-    <div class="archive-header">
-        <h2>stari_logovi</h2>
-        <nav>
-            <a href="#" class="btn-sm">&lt;&lt; nazad</a>
-            <a href="#" class="btn-sm">naprijed &gt;&gt;</a>
-        </nav>
-    </div>
-    <div id="archive-container" class="archive-grid">
-        <div class="archive-item">
-            <span class="date">2026.01.20</span>
-            <h4>kako_zakrpati_gumu</h4>
-            <p class="archive-preview">kratki vodič o tome kako pronaći rupu koristeći samo kantu vode...</p>
-        </div>
-    </div>
-</section>
 
 <footer>
     <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
