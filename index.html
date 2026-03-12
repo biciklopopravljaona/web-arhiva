@@ -277,73 +277,76 @@
 </footer>
 
 <script>
+    // 1. Navigation for mobile
     function toggleMenu() {
         const nav = document.getElementById('main-nav');
         nav.classList.toggle('open');
     }
 
+    // 2. Blog Logic
     let allPosts = [];
-    let archiveIndex = 1; // Start the archive at the second post (index 1)
-    const archiveSize = 2; // Number of boxes in the archive
+    let archiveStart = 1; // This ensures we ALWAYS skip the first post (index 0)
+    const itemsToShow = 2; // Number of archive boxes
 
-    function renderArchive() {
-        // 1. Always show the absolute latest post on top, regardless of page
-        if (allPosts.length > 0) {
-            const latest = allPosts[0];
-            document.getElementById('latest-post').innerHTML = `
-                <h2>novosti_iz_radione: ${latest.date}</h2>
-                <h3>"${latest.title}"</h3>
-                <p>${latest.content}</p>
-            `;
-        }
+    function renderBlog() {
+        if (allPosts.length === 0) return;
 
-        // 2. Render only the two boxes for the archive based on archiveIndex
-        const archiveItems = allPosts.slice(archiveIndex, archiveIndex + archiveSize);
+        // --- ALWAYS RENDER THE LATEST POST AT THE TOP ---
+        // This part never changes, no matter what archiveStart is.
+        const latest = allPosts[0];
+        document.getElementById('latest-post').innerHTML = `
+            <h2>novosti_iz_radione: ${latest.date}</h2>
+            <h3>"${latest.title}"</h3>
+            <p>${latest.content}</p>
+        `;
+
+        // --- RENDER ONLY THE ARCHIVE BOXES ---
+        // We slice the array starting from our moving archiveStart index
+        const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
         
         const container = document.getElementById('archive-container');
-        if (archiveItems.length > 0) {
-            container.innerHTML = archiveItems.map(post => `
-                <div class="archive-item">
-                    <span class="date">${post.date}</span>
-                    <h4>${post.title}</h4>
-                    <p class="archive-preview">${post.content.substring(0, 100)}...</p>
-                </div>
-            `).join('');
-        } else {
-            container.innerHTML = "<p>Nema starijih logova.</p>";
-        }
+        container.innerHTML = archiveItems.map(post => `
+            <div class="archive-item">
+                <span class="date">${post.date}</span>
+                <h4>${post.title}</h4>
+                <p class="archive-preview">${post.content.substring(0, 100)}...</p>
+            </div>
+        `).join('');
 
-        // Update button visibility/opacity
-        // Nazad (Back) button - shows older posts (moves index forward)
-        document.getElementById('prev-btn').style.opacity = (archiveIndex + archiveSize >= allPosts.length) ? "0.3" : "1";
-        // Naprijed (Forward) button - shows newer posts (moves index backward)
-        document.getElementById('next-btn').style.opacity = (archiveIndex === 1) ? "0.3" : "1";
+        // --- BUTTON STYLING ---
+        // "Nazad" (Older) - moves the index forward to older posts
+        const hasOlder = (archiveStart + itemsToShow) < allPosts.length;
+        document.getElementById('prev-btn').style.opacity = hasOlder ? "1" : "0.2";
+        document.getElementById('prev-btn').style.pointerEvents = hasOlder ? "auto" : "none";
+
+        // "Naprijed" (Newer) - moves index back toward the start (but stops at 1)
+        const hasNewer = archiveStart > 1;
+        document.getElementById('next-btn').style.opacity = hasNewer ? "1" : "0.2";
+        document.getElementById('next-btn').style.pointerEvents = hasNewer ? "auto" : "none";
     }
 
+    // 3. Load Data
     fetch('data/blog.json')
         .then(res => res.json())
         .then(data => {
             allPosts = data.entries || [];
-            renderArchive();
+            renderBlog();
         })
-        .catch(e => console.error("Error loading blog:", e));
+        .catch(err => console.error("Error loading JSON:", err));
 
-    // Nazad (Older posts)
+    // 4. Click Listeners
     document.getElementById('prev-btn').addEventListener('click', (e) => {
         e.preventDefault();
-        if (archiveIndex + archiveSize < allPosts.length) {
-            archiveIndex += archiveSize;
-            renderArchive();
-        }
+        // Move deeper into the list (older posts)
+        archiveStart += itemsToShow;
+        renderBlog();
     });
 
-    // Naprijed (Newer posts)
     document.getElementById('next-btn').addEventListener('click', (e) => {
         e.preventDefault();
-        if (archiveIndex > 1) {
-            archiveIndex -= archiveSize;
-            renderArchive();
-        }
+        // Move back toward the start (newer posts), but don't go past index 1
+        archiveStart = Math.max(1, archiveStart - itemsToShow);
+        renderBlog();
     });
 </script>
 </body>
