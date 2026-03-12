@@ -304,25 +304,36 @@
         });
     }
 
-    fetch('data/blog.json').then(res => res.json()).then(data => {
+    fetch('data/blog.json')
+    .then(res => res.json())
+    .then(data => {
         const posts = data.entries || [];
+        
         if(posts.length > 0) {
+            // 1. The very first item in the JSON becomes the Main News
             const latest = posts[0];
             document.getElementById('latest-post').innerHTML = `
                 <h2>novosti iz radione: ${latest.date}</h2>
                 <h3>"${latest.title}"</h3>
                 <p>${latest.content}</p>
             `;
+
+            // 2. Everything else (from index 1 onwards) goes to Stari Logovi
+            // This will automatically "shift" them as you add new ones to the JSON
             const archiveHtml = posts.slice(1).map(post => `
                 <div class="archive-item">
                     <span class="date">${post.date}</span>
                     <h4>${post.title}</h4>
-                    <p class="archive-preview">${post.content}</p>
+                    <p class="archive-preview">${post.content.substring(0, 150)}...</p>
                 </div>
             `).join('');
-            if(archiveHtml) document.getElementById('archive-container').innerHTML = archiveHtml;
+
+            if(archiveHtml) {
+                document.getElementById('archive-container').innerHTML = archiveHtml;
+            }
         }
-    }).catch(e => console.log("Blog load failed"));
+    })
+    .catch(e => console.error("Update your blog.json file to see changes."));
 </script>
 </body>
 </html>
