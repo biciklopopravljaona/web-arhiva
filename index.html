@@ -218,7 +218,8 @@
             <a href="#" id="next-btn" class="btn-sm">naprijed &gt;&gt;</a>
         </nav>
     </div>
-    <div id="archive-container" class="archive-grid"></div>
+    <div id="archive-container" class="archive-grid">
+    </div>
 </section>
      
 
@@ -276,69 +277,72 @@
 </footer>
 
 <script>
-    // --- 1. MOBILE MENU LOGIC ---
     function toggleMenu() {
         const nav = document.getElementById('main-nav');
         nav.classList.toggle('open');
     }
 
-    // --- 2. BLOG PAGINATION LOGIC ---
     let allPosts = [];
-    let currentPage = 0;
-    const postsPerPage = 3; // 1 main + 2 archive boxes
+    let archiveIndex = 1; // Start the archive at the second post (index 1)
+    const archiveSize = 2; // Number of boxes in the archive
 
-    function renderPage(page) {
-        const startIdx = page * postsPerPage;
-        const pagePosts = allPosts.slice(startIdx, startIdx + postsPerPage);
-
-        if (pagePosts.length > 0) {
-            // Render the Main (Top) Post for this page
-            const top = pagePosts[0];
+    function renderArchive() {
+        // 1. Always show the absolute latest post on top, regardless of page
+        if (allPosts.length > 0) {
+            const latest = allPosts[0];
             document.getElementById('latest-post').innerHTML = `
-                <h2>novosti_iz_radione: ${top.date}</h2>
-                <h3>"${top.title}"</h3>
-                <p>${top.content}</p>
+                <h2>novosti_iz_radione: ${latest.date}</h2>
+                <h3>"${latest.title}"</h3>
+                <p>${latest.content}</p>
             `;
+        }
 
-            // Render the 2 Archive Posts for this page
-            const archiveItems = pagePosts.slice(1, 3);
-            document.getElementById('archive-container').innerHTML = archiveItems.map(post => `
+        // 2. Render only the two boxes for the archive based on archiveIndex
+        const archiveItems = allPosts.slice(archiveIndex, archiveIndex + archiveSize);
+        
+        const container = document.getElementById('archive-container');
+        if (archiveItems.length > 0) {
+            container.innerHTML = archiveItems.map(post => `
                 <div class="archive-item">
                     <span class="date">${post.date}</span>
                     <h4>${post.title}</h4>
                     <p class="archive-preview">${post.content.substring(0, 100)}...</p>
                 </div>
             `).join('');
+        } else {
+            container.innerHTML = "<p>Nema starijih logova.</p>";
         }
-        
-        // Visual feedback for buttons (faded if no more posts)
-        document.getElementById('prev-btn').style.opacity = (page + 1) * postsPerPage >= allPosts.length ? "0.3" : "1";
-        document.getElementById('next-btn').style.opacity = page === 0 ? "0.3" : "1";
+
+        // Update button visibility/opacity
+        // Nazad (Back) button - shows older posts (moves index forward)
+        document.getElementById('prev-btn').style.opacity = (archiveIndex + archiveSize >= allPosts.length) ? "0.3" : "1";
+        // Naprijed (Forward) button - shows newer posts (moves index backward)
+        document.getElementById('next-btn').style.opacity = (archiveIndex === 1) ? "0.3" : "1";
     }
 
-    // Fetch the data from your JSON
     fetch('data/blog.json')
         .then(res => res.json())
         .then(data => {
             allPosts = data.entries || [];
-            renderPage(0);
+            renderArchive();
         })
-        .catch(e => console.log("Check if data/blog.json exists and is valid JSON"));
+        .catch(e => console.error("Error loading blog:", e));
 
-    // Button Listeners
+    // Nazad (Older posts)
     document.getElementById('prev-btn').addEventListener('click', (e) => {
         e.preventDefault();
-        if ((currentPage + 1) * postsPerPage < allPosts.length) {
-            currentPage++;
-            renderPage(currentPage);
+        if (archiveIndex + archiveSize < allPosts.length) {
+            archiveIndex += archiveSize;
+            renderArchive();
         }
     });
 
+    // Naprijed (Newer posts)
     document.getElementById('next-btn').addEventListener('click', (e) => {
         e.preventDefault();
-        if (currentPage > 0) {
-            currentPage--;
-            renderPage(currentPage);
+        if (archiveIndex > 1) {
+            archiveIndex -= archiveSize;
+            renderArchive();
         }
     });
 </script>
