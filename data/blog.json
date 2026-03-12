@@ -1,24 +1,24 @@
 {
   "entries": [
     {
-      "date": "2026.02.09",
-      "title": "najfriskije",
-      "content": "ovaj je najnoviji..."
-    },
-    {
       "date": "2026.02.08",
-      "title": "sustav je aktivan",
-      "content": "your new text here..."
+      "title": "post 1",
+      "content": "..."
     },
     {
       "date": "2026.01.20",
-      "title": "kako_zakrpati_gumu",
-      "content": "this used to be the main news..."
+      "title": "post 2",
+      "content": "..."
     },
     {
-      "date": "2026.01.18",
-      "title": "centriranje_kotaca",
-      "content": "this was the first archive box..."
+      "date": "2026.01.10",
+      "title": "post 3",
+      "content": "..."
+    },
+    {
+      "date": "2026.01.05",
+      "title": "post 4",
+      "content": "..."
     }
   ]
 }
