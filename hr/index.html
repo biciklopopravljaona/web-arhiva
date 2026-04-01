@@ -196,11 +196,12 @@
         <a href="index.html" class="btn active">[ početna ]</a>
         <a href="about.html" class="btn">[ o nama ]</a>
         <a href="pitanja.html" class="btn">[ pitanja ]</a>
-        <a href="EN.html" class="btn">[ en ]</a>
+        <a href="/en/" class="btn" style="color: #ff8c00; border-color: #ff8c00;">[ en / hr ]</a>
     </nav>
 </header>
 
 <div class="container">
+
     <main>
         <section id="novosti">
             <div id="latest-post">
@@ -214,8 +215,8 @@
     <div class="archive-header">
         <h2>stari_logovi</h2>
         <nav>
-            <a href="#" id="prev-btn" class="btn-sm">&lt;&lt; nazad</a>
-            <a href="#" id="next-btn" class="btn-sm">naprijed &gt;&gt;</a>
+            <a href="#" id="prev-btn" class="btn-sm">&lt;&lt; starije</a>
+            <a href="#" id="next-btn" class="btn-sm">novije &gt;&gt;</a>
         </nav>
     </div>
     <div id="archive-container" class="archive-grid">
@@ -314,12 +315,12 @@
         `).join('');
 
         // --- BUTTON STYLING ---
-        // "Nazad" (Older) - moves the index forward to older posts
+        // "Starije" (Older) - moves the index forward to older posts
         const hasOlder = (archiveStart + itemsToShow) < allPosts.length;
         document.getElementById('prev-btn').style.opacity = hasOlder ? "1" : "0.2";
         document.getElementById('prev-btn').style.pointerEvents = hasOlder ? "auto" : "none";
 
-        // "Naprijed" (Newer) - moves index back toward the start (but stops at 1)
+        // "Novije" (Newer) - moves index back toward the start (but stops at 1)
         const hasNewer = archiveStart > 1;
         document.getElementById('next-btn').style.opacity = hasNewer ? "1" : "0.2";
         document.getElementById('next-btn').style.pointerEvents = hasNewer ? "auto" : "none";

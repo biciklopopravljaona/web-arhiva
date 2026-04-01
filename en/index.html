@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICIKLOPOPRAVLJAONA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap');
+
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --accent: #00ff41; 
+            --border: 2px solid #333;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'M PLUS 1m', monospace;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            text-transform: lowercase;
+        }
+
+        header, section, .archive-item {
+            background-color: var(--bg);
+            border: var(--border);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative; /* Keeps the mobile nav anchored here */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -2px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        nav { display: flex; gap: 10px; }
+
+        /* --- HAMBURGER: HIDDEN BY DEFAULT (DESKTOP) --- */
+        .hamburger { 
+            display: none; 
+            cursor: pointer; 
+            border: var(--border); 
+            color: var(--accent); 
+            padding: 5px 12px; 
+            font-size: 1.4rem; 
+        }
+
+        .btn {
+            background: none;
+            border: var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover { background: var(--accent); color: #000; }
+        .btn.active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent); }
+
+        .section-link { text-decoration: none; color: inherit; display: block; }
+        .section-link h2:hover { background: var(--accent); color: #000; cursor: pointer; }
+
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        h2 {
+            border-bottom: var(--border);
+            padding-bottom: 5px;
+            color: var(--accent);
+            margin-top: 0;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(100%) contrast(120%);
+            border: 1px solid #444;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        img:hover { filter: none; border-color: var(--accent); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid #444;
+            background: #111;
+        }
+
+        .gallery-grid img { margin-bottom: 0; border: 2px solid #000; }
+
+        .comic-frame { background: #fff; padding: 10px; border: 4px solid #000; color: #000; }
+        .comic-frame img { filter: none; border: 2px solid #000; }
+        .comic-caption { font-weight: 700; text-align: center; font-size: 1.2rem; margin-top: 10px; }
+
+        .tour-images { display: flex; gap: 10px; margin-top: 15px; }
+        .tour-images img { width: 48%; }
+
+        .archive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border: none;
+            padding: 0;
+        }
+
+        .archive-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* This forces exactly two boxes per row */
+    gap: 15px; 
+    align-items: start;            /* This makes boxes shrink to the height of their text */
+}
+        .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
+        .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
+
+        .btn-sm {
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 2px 8px;
+            text-decoration: none;
+            font-size: 0.7rem;
+        }
+
+        footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            header { flex-wrap: nowrap; padding: 10px 15px; position: relative; }
+            h1 { font-size: 1.4rem; letter-spacing: -1px; } 
+            
+            /* SHOW HAMBURGER ONLY ON MOBILE */
+            .hamburger { display: block; }
+            
+            nav { 
+                display: none; 
+                flex-direction: column; 
+                width: 100%; 
+                background: var(--bg);
+                border: var(--border);
+                padding: 10px;
+                position: absolute; 
+                top: 100%; /* Sits exactly at the bottom of the header */
+                left: 0;
+                z-index: 100;
+                box-sizing: border-box; 
+            }
+            nav.open { display: flex; }
+
+            .container { display: flex; flex-direction: column; }
+            main, aside { display: contents; }
+
+            #lokacija { order: 1; }
+            #novosti { order: 2; }
+            #arhiva { order: 3; }
+            #galerija-link { order: 4; }
+            #strip-link { order: 5; }
+            #tour-link { order: 6; }
+            
+
+            .archive-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<header>
+    <h1>BICIKLOPOPRAVLJAONA</h1>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav id="main-nav"> 
+        <a href="index.html" class="btn active">[ početna ]</a>
+        <a href="about.html" class="btn">[ o nama ]</a>
+        <a href="pitanja.html" class="btn">[ pitanja ]</a>
+        <a href="/en/" class="btn" style="color: #ff8c00; border-color: #ff8c00;">[ en / hr ]</a>
+    </nav>
+</header>
+
+<div class="container">
+    <main>
+        <section id="novosti">
+            <div id="latest-post">
+                <h2>novosti_iz_radione: 2026.02.08</h2>
+                <h3>"sustav je aktivan"</h3>
+                <p>gdje su mi rijeci. the bottom bracket was seized by decades of rust, but with enough patience (and a very long pipe), it gave way. stop buying plastic. start restoring steel.</p>
+            </div>
+        </section>
+        
+       <section id="arhiva">
+    <div class="archive-header">
+        <h2>stari_logovi</h2>
+        <nav>
+            <a href="#" id="prev-btn" class="btn-sm">&lt;&lt; nazad</a>
+            <a href="#" id="next-btn" class="btn-sm">naprijed &gt;&gt;</a>
+        </nav>
+    </div>
+    <div id="archive-container" class="archive-grid">
+    </div>
+</section>
+     
+
+        <a href="strip.html" class="section-link" id="strip-link">
+            <section id="strip">
+                <h2>tjedni_strip</h2>
+                <div id="comic-container" class="comic-frame">
+                    <img src="https://m2zk.neocities.org/bicpopstrip.jpg" alt="Bicpop Comic Strip">
+                    <div class="comic-caption">"tjedni strip"</div>
+                </div>
+            </section>
+        </a>
+
+        <a href="microtouring.html" class="section-link" id="tour-link">
+            <section id="micro-touring">
+                <h2>micro_touring</h2>
+                <div id="tour-content">
+                    <p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss. here are the captures from the field:</p>
+                    <div class="tour-images">
+                        <img src="https://m2zk.neocities.org/zine/sljeme.jpg" alt="Touring Photo 1">
+                        <img src="https://m2zk.neocities.org/zine/samobor.jpg" alt="Touring Photo 2">
+                    </div>
+                </div>
+            </section>
+        </a>
+        
+       
+        
+    </main>
+
+    <aside>
+        <section id="lokacija">
+            <h2>lokacija</h2>
+            <p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p>
+            <p>cet: 18:00 - 20:00</p>
+        </section>
+
+        <a href="galerija.html" class="section-link" id="galerija-link">
+            <section id="galerija">
+                <h2>galerija</h2>
+                <div id="gallery-container" class="gallery-grid">
+                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 1">
+                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 2">
+                    <img src="https://m2zk.neocities.org/image4.jpg" alt="Gallery 3">
+                    <img src="https://m2zk.neocities.org/image3.jpg" alt="Gallery 4">
+                </div>
+            </section>
+        </a>
+    </aside>
+</div>
+
+
+<footer>
+    <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
+</footer>
+
+<script>
+    // 1. Navigation for mobile
+    function toggleMenu() {
+        const nav = document.getElementById('main-nav');
+        nav.classList.toggle('open');
+    }
+
+    // 2. Blog Logic
+    let allPosts = [];
+    let archiveStart = 1; // This ensures we ALWAYS skip the first post (index 0)
+    const itemsToShow = 2; // Number of archive boxes
+
+    function renderBlog() {
+        if (allPosts.length === 0) return;
+
+        // --- ALWAYS RENDER THE LATEST POST AT THE TOP ---
+        // This part never changes, no matter what archiveStart is.
+        const latest = allPosts[0];
+        document.getElementById('latest-post').innerHTML = `
+            <h2>novosti_iz_radione: ${latest.date}</h2>
+            <h3>"${latest.title}"</h3>
+            <p>${latest.content}</p>
+        `;
+
+        // --- RENDER ONLY THE ARCHIVE BOXES ---
+        // We slice the array starting from our moving archiveStart index
+        const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
+        
+        const container = document.getElementById('archive-container');
+        container.innerHTML = archiveItems.map(post => `
+            <div class="archive-item">
+                <span class="date">${post.date}</span>
+                <h4>${post.title}</h4>
+                <p class="archive-preview">${post.content.substring(0, 100)}...</p>
+            </div>
+        `).join('');
+
+        // --- BUTTON STYLING ---
+        // "Nazad" (Older) - moves the index forward to older posts
+        const hasOlder = (archiveStart + itemsToShow) < allPosts.length;
+        document.getElementById('prev-btn').style.opacity = hasOlder ? "1" : "0.2";
+        document.getElementById('prev-btn').style.pointerEvents = hasOlder ? "auto" : "none";
+
+        // "Naprijed" (Newer) - moves index back toward the start (but stops at 1)
+        const hasNewer = archiveStart > 1;
+        document.getElementById('next-btn').style.opacity = hasNewer ? "1" : "0.2";
+        document.getElementById('next-btn').style.pointerEvents = hasNewer ? "auto" : "none";
+    }
+
+    // 3. Load Data
+    fetch('data/blog.json')
+        .then(res => res.json())
+        .then(data => {
+            allPosts = data.entries || [];
+            renderBlog();
+        })
+        .catch(err => console.error("Error loading JSON:", err));
+
+    // 4. Click Listeners
+    document.getElementById('prev-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        // Move deeper into the list (older posts)
+        archiveStart += itemsToShow;
+        renderBlog();
+    });
+
+    document.getElementById('next-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        // Move back toward the start (newer posts), but don't go past index 1
+        archiveStart = Math.max(1, archiveStart - itemsToShow);
+        renderBlog();
+    });
+</script>
+</body>
+</html>
 
