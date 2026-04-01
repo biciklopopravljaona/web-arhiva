@@ -14,7 +14,7 @@ collections:
     files:
       - name: "posts_hr"
         label: "Hrvatski Postovi"
-        file: "data/blog.json"
+        file: "hr/data/blog.json"
         fields: &blog_fields
           - name: "entries"
             label: "Postovi"
@@ -34,7 +34,7 @@ collections:
     files:
       - name: "tours"
         label: "Micro-Touring"
-        file: "data/tours.json"
+        file: "hr/data/tours.json"
         fields:
           - name: "entries"
             label: "Ture"
@@ -46,7 +46,7 @@ collections:
 
       - name: "galerija"
         label: "Galerija"
-        file: "data/gallery.json"
+        file: "hr/data/gallery.json"
         fields:
           - name: "photos"
             label: "Fotke"
@@ -57,7 +57,7 @@ collections:
 
       - name: "strip"
         label: "Strip"
-        file: "data/strip.json"
+        file: "hr/data/strip.json"
         fields:
           - name: "episodes"
             label: "Epizode"
