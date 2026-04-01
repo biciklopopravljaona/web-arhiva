@@ -330,7 +330,7 @@
     fetch('/hr/data/blog.json')
         .then(res => res.json())
         .then(data => {
-            allPosts = data.entries || [];
+            allPosts = (data.entries || []).reverse();
             renderBlog();
         })
         .catch(err => console.error("Error loading JSON:", err));
