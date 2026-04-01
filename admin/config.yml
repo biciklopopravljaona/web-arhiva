@@ -3,8 +3,8 @@ backend:
   branch: main
   repo: biciklopopravljaona/web-arhiva
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "hr/images/uploads"
+public_folder: "/hr/images/uploads"
 
 sortable_fields: ['date']
 
@@ -26,7 +26,7 @@ collections:
       
       - name: "posts_en"
         label: "English Posts"
-        file: "data/blog_en.json"
+        file: "en/data/blog_en.json"
         fields: *blog_fields
 
   - name: "shared_content"
