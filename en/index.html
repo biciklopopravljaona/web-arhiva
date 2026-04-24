@@ -14,89 +14,35 @@
             --border: 2px solid #333;
         }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'M PLUS 1m', monospace;
-            line-height: 1.4;
-            margin: 0;
-            padding: 20px;
-            text-transform: lowercase;
-        }
-
-        header, section, .archive-item {
-            background-color: var(--bg);
-            border: var(--border);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            position: relative;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: -2px;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
+        body { background-color: var(--bg); color: var(--text); font-family: 'M PLUS 1m', monospace; line-height: 1.4; margin: 0; padding: 20px; text-transform: lowercase; }
+        header, section, .archive-item { background-color: var(--bg); border: var(--border); padding: 20px; margin-bottom: 20px; }
+        header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; position: relative; }
+        h1 { font-size: 3rem; margin: 0; letter-spacing: -2px; color: var(--accent); font-weight: 700; }
         nav { display: flex; gap: 10px; }
 
         /* UNIFIED BUTTON STYLING */
-        .btn, .lang-current {
-            background: none;
-            border: var(--border);
-            color: var(--text);
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            font-family: 'M PLUS 1m', monospace;
-            text-transform: lowercase;
-            text-decoration: none;
-            cursor: pointer;
-            box-sizing: border-box;
-            display: inline-flex;
-            align-items: center;
-            height: 38px;
-            margin: 0;
-        }
-
+        .btn, .lang-current { background: none; border: var(--border); color: var(--text); padding: 8px 12px; font-size: 0.9rem; font-family: 'M PLUS 1m', monospace; text-transform: lowercase; text-decoration: none; cursor: pointer; box-sizing: border-box; display: inline-flex; align-items: center; height: 38px; margin: 0; }
         .lang-current { color: #ff8c00; border-color: #ff8c00; }
         .btn:hover { background: var(--accent); color: #000; }
         .btn.active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent); }
 
         /* DROPDOWN */
-        .lang-selector { position: relative; display: inline-block; }
+        .lang-selector { position: relative; display: inline-block; z-index: 500; }
         .lang-dropdown {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    margin-top: -2px; /* Pulls the dropdown up to overlap the button border perfectly */
-    background: var(--bg);
-    border: var(--border);
-    border-color: #ff8c00;
-    z-index: 200;
-    min-width: 100%;
-    box-sizing: border-box; /* This is the most important part */
-}
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: -2px;
+            background: var(--bg);
+            border: var(--border);
+            border-color: #ff8c00;
+            z-index: 501;
+            min-width: 100%;
+            box-sizing: border-box;
         }
         .lang-dropdown.open { display: block; }
-        .lang-dropdown a {
-            display: block;
-            padding: 8px 12px;
-            color: #ff8c00;
-            text-decoration: none;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+        .lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
         .lang-dropdown a:hover { background: #ff8c00; color: #000; }
 
         /* HAMBURGER */
@@ -130,7 +76,6 @@
             nav { display: none; flex-direction: column; width: 100%; background: var(--bg); border: var(--border); padding: 10px; position: absolute; top: 100%; left: 0; z-index: 100; box-sizing: border-box; }
             nav.open { display: flex; }
             .container { display: flex; flex-direction: column; }
-            main, aside { display: contents; }
             .archive-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -139,14 +84,25 @@
 <header>
     <h1>BICIKLOPOPRAVLJAONA</h1>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <nav id="main-nav"><a href="index.html" class="btn active">[ home ]</a><a href="about.html" class="btn">[ about ]</a><a href="qa.html" class="btn">[ q&a ]</a><div class="lang-selector"><button class="lang-current" onclick="toggleLang()">[ en ▾ ]</button><div class="lang-dropdown" id="lang-dropdown"><a href="/hr/">[ hr ]</a></div></div></nav>
+    <nav id="main-nav">
+        <a href="index.html" class="btn active">[ home ]</a>
+        <a href="about.html" class="btn">[ about ]</a>
+        <a href="qa.html" class="btn">[ q&a ]</a>
+        <div class="lang-selector">
+            <button class="lang-current" onclick="toggleLang(event)">[ en ▾ ]</button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="/hr/">[ hr ]</a>
+            </div>
+        </div>
+    </nav>
 </header>
+
 <div class="container">
     <main>
         <section id="novosti"><div id="latest-post"><h2>workshop_news: ...</h2><h3>"loading..."</h3><p></p></div></section>
         <section id="arhiva"><div class="archive-header"><h2>old_logs</h2><nav><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; older</a><a href="#" id="next-btn" class="btn-sm">newer &gt;&gt;</a></nav></div><div id="archive-container" class="archive-grid"></div></section>
         <a href="comic.html" class="section-link" id="strip-link"><section id="strip"><h2>weekly_comic</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg" alt="Bicpop Comic Strip"><div class="comic-caption">"weekly comic"</div></div></section></a>
-        <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>micro_touring</h2><div id="tour-content"><p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss. here are the captures from the field:</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg" alt="Touring Photo 1"><img src="https://m2zk.neocities.org/zine/samobor.jpg" alt="Touring Photo 2"></div></div></section></a>
+        <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>micro_touring</h2><div id="tour-content"><p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss.</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
     </main>
     <aside>
         <section id="lokacija"><h2>location</h2><p>gunduliceva 1<br>courtyard<br>10000 zagreb</p><p>thu: 18:00 - 20:00</p></section>
@@ -154,10 +110,19 @@
     </aside>
 </div>
 <footer><p>Bicpop Bike Kitchen - Copyleft 2026</p></footer>
+
 <script>
     function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
-    function toggleLang() { document.getElementById('lang-dropdown').classList.toggle('open'); }
-    document.addEventListener('click', function(e) { if (!e.target.closest('.lang-selector')) { document.getElementById('lang-dropdown').classList.remove('open'); } });
+    
+    function toggleLang(event) {
+        event.stopPropagation();
+        document.getElementById('lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function() {
+        document.getElementById('lang-dropdown').classList.remove('open');
+    });
+
     let allPosts = []; let archiveStart = 1; const itemsToShow = 2;
     function renderBlog() {
         if (allPosts.length === 0) return;
