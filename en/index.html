@@ -75,15 +75,18 @@
         /* DROPDOWN */
         .lang-selector { position: relative; display: inline-block; }
         .lang-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background: var(--bg);
-            border: var(--border);
-            border-color: #ff8c00;
-            z-index: 200;
-            min-width: 100%;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: -2px; /* Pulls the dropdown up to overlap the button border perfectly */
+    background: var(--bg);
+    border: var(--border);
+    border-color: #ff8c00;
+    z-index: 200;
+    min-width: 100%;
+    box-sizing: border-box; /* This is the most important part */
+}
         }
         .lang-dropdown.open { display: block; }
         .lang-dropdown a {
