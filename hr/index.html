@@ -26,7 +26,7 @@
         .btn:hover { background: var(--accent); color: #000; }
         .btn.active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent); }
 
-        /* DROPDOWN */
+        /* DROPDOWN - FIXED WITH Z-INDEX AND BOX-SIZING */
         .lang-selector { position: relative; display: inline-block; z-index: 500; }
         .lang-dropdown {
             display: none;
@@ -116,11 +116,13 @@
 <script>
     function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
     
+    // Added event.stopPropagation to keep dropdown open when clicking the button
     function toggleLang(event) {
         event.stopPropagation();
         document.getElementById('lang-dropdown').classList.toggle('open');
     }
 
+    // Closes dropdown when clicking elsewhere
     document.addEventListener('click', function() {
         document.getElementById('lang-dropdown').classList.remove('open');
     });
