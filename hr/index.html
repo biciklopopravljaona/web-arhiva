@@ -56,9 +56,9 @@
     cursor: pointer;
     font-family: 'M PLUS 1m', monospace;
     text-transform: lowercase;
+    /* Add this line to align vertically with other nav buttons */
+    height: 36px; 
 }
-
-.lang-current:hover { background: #ff8c00; color: #000; }
 
 .lang-dropdown {
     display: none;
@@ -241,16 +241,15 @@
         <a href="index.html" class="btn active">[ početna ]</a>
         <a href="about.html" class="btn">[ o nama ]</a>
         <a href="pitanja.html" class="btn">[ pitanja ]</a>
-        <a href="/en/" class="btn" style="color: #ff8c00; border-color: #ff8c00;">[ en / hr ]</a>
+        
+        <div class="lang-selector">
+            <button class="lang-current" onclick="toggleLang()">[ hr ▾ ]</button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="/hr/">[ hrvatski ]</a>
+                <a href="/en/">[ english ]</a>
+            </div>
+        </div>
     </nav>
-
-    <div class="lang-selector">
-    <button class="lang-current" onclick="toggleLang()">[ hr ▾ ]</button>
-    <div class="lang-dropdown" id="lang-dropdown">
-        <a href="/hr/">[ hrvatski ]</a>
-        <a href="/en/">[ english ]</a>
-    </div>
-</div>
 </header>
 
 <div class="container">
