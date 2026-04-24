@@ -26,7 +26,7 @@
         .btn:hover { background: var(--accent); color: #000; }
         .btn.active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent); }
 
-        /* DROPDOWN - FIXED WITH Z-INDEX AND BOX-SIZING */
+        /* DROPDOWN */
         .lang-selector { position: relative; display: inline-block; z-index: 500; }
         .lang-dropdown {
             display: none;
@@ -42,7 +42,7 @@
             box-sizing: border-box;
         }
         .lang-dropdown.open { display: block; }
-        .lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
+        .lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; text-align: center; }
         .lang-dropdown a:hover { background: #ff8c00; color: #000; }
 
         /* HAMBURGER */
@@ -92,8 +92,7 @@
         <div class="lang-selector">
             <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
             <div class="lang-dropdown" id="lang-dropdown">
-                <a href="/hr/">[ hrvatski ]</a>
-                <a href="/en/">[ english ]</a>
+                <a href="/en/">[ en ]</a>
             </div>
         </div>
     </nav>
@@ -115,17 +114,8 @@
 
 <script>
     function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
-    
-    // Added event.stopPropagation to keep dropdown open when clicking the button
-    function toggleLang(event) {
-        event.stopPropagation();
-        document.getElementById('lang-dropdown').classList.toggle('open');
-    }
-
-    // Closes dropdown when clicking elsewhere
-    document.addEventListener('click', function() {
-        document.getElementById('lang-dropdown').classList.remove('open');
-    });
+    function toggleLang(event) { event.stopPropagation(); document.getElementById('lang-dropdown').classList.toggle('open'); }
+    document.addEventListener('click', function() { document.getElementById('lang-dropdown').classList.remove('open'); });
 
     let allPosts = []; let archiveStart = 1; const itemsToShow = 2;
     function renderBlog() {
@@ -133,13 +123,9 @@
         const latest = allPosts[0];
         document.getElementById('latest-post').innerHTML = `<h2>novosti_iz_radione: ${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
         const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
-        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><span class="date">${post.date}</span><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
-        document.getElementById('prev-btn').style.opacity = ((archiveStart + itemsToShow) < allPosts.length) ? "1" : "0.2";
-        document.getElementById('next-btn').style.opacity = (archiveStart > 1) ? "1" : "0.2";
+        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
     }
     fetch('/hr/data/blog.json').then(res => res.json()).then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); });
-    document.getElementById('prev-btn').addEventListener('click', (e) => { e.preventDefault(); archiveStart += itemsToShow; renderBlog(); });
-    document.getElementById('next-btn').addEventListener('click', (e) => { e.preventDefault(); archiveStart = Math.max(1, archiveStart - itemsToShow); renderBlog(); });
 </script>
 </body>
 </html>
