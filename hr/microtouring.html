@@ -58,6 +58,14 @@
             text-decoration: none;
             font-size: 0.9rem;
         }
+/* Unified Button & Dropdown Styles */
+.btn, .lang-current { background: none; border: var(--border); color: var(--text); padding: 8px 12px; font-size: 0.9rem; font-family: 'M PLUS 1m', monospace; text-transform: lowercase; text-decoration: none; cursor: pointer; box-sizing: border-box; display: inline-flex; align-items: center; height: 38px; margin: 0; }
+.lang-current { color: #ff8c00; border-color: #ff8c00; }
+.lang-selector { position: relative; display: inline-block; z-index: 500; }
+.lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: -2px; background: var(--bg); border: var(--border); border-color: #ff8c00; z-index: 501; min-width: 100%; box-sizing: border-box; }
+.lang-dropdown.open { display: block; }
+.lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; text-align: left; }
+.lang-dropdown a:hover { background: #ff8c00; color: #000; }
 
         .btn:hover { background: var(--accent); color: #000; }
 
@@ -177,12 +185,17 @@
 
 <header>
     <h1>BICIKLOPOPRAVLJAONA</h1>
-    <nav>
-        <a href="index.html" class="btn">[ pocetna ]</a>
-        <a href="about.html" class="btn">[ o nama ]</a>
-        <a href="pitanja.html" class="btn">[ pitanja ]</a>
-        <a href="EN.html" class="btn">[ en ]</a>
-    </nav>
+   <nav>
+    <a href="index.html" class="btn">[ pocetna ]</a>
+    <a href="about.html" class="btn">[ o nama ]</a>
+    <a href="pitanja.html" class="btn">[ pitanja ]</a>
+    <div class="lang-selector">
+        <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
+        <div class="lang-dropdown" id="lang-dropdown">
+            <a href="/en/">[ en ]</a>
+        </div>
+    </div>
+</nav>
 </header>
 
 <div class="tour-interface">
@@ -229,6 +242,16 @@
 <footer>
     <p>Bicpop Bike Kitchen - Copyleft 2026 - Just grease.</p>
 </footer>
+<script>
+    function toggleLang(event) {
+        event.stopPropagation();
+        document.getElementById('lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function() {
+        document.getElementById('lang-dropdown').classList.remove('open');
+    });
+</script>
 
 </body>
 </html>
