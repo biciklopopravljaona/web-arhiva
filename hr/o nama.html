@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O NAMA | BICIKLOPOPRAVLJAONA</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Import M+ 1m from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap');
@@ -73,6 +74,7 @@
         }
         
         /* This goes in your <style> area */
+/* Add this right under your .btn:hover { ... } rule */
 .btn.active {
     background: var(--accent) !important;
     color: #000 !important;
@@ -168,8 +170,7 @@
     <h1>BICIKLOPOPRAVLJAONA</h1>
    <nav>
     <a href="index.html" class="btn">[ pocetna ]</a>
-    <a href="about.html" class="btn">[ o nama ]</a>
-    <a href="pitanja.html" class="btn">[ pitanja ]</a>
+    <a href="about.html" class="btn active">[ o nama ]</a> <a href="pitanja.html" class="btn">[ pitanja ]</a>
     <div class="lang-selector">
         <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
         <div class="lang-dropdown" id="lang-dropdown">
