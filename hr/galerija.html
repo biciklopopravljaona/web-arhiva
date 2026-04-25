@@ -223,20 +223,22 @@
 </footer>
 
 <script>
+    // 1. Language Functions (Now outside, so they work everywhere)
+    function toggleLang(event) {
+        event.stopPropagation();
+        document.getElementById('lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function() {
+        document.getElementById('lang-dropdown').classList.remove('open');
+    });
+
+    // 2. Folder Switch Function
     function switchFolder(name) {
         document.querySelectorAll('.folder-link').forEach(el => el.classList.remove('active'));
         event.currentTarget.classList.add('active');
         document.getElementById('current-dir').innerText = 'current_dir: /' + name;
         document.getElementById('stream').scrollTop = 0;
-
-        function toggleLang(event) {
-    event.stopPropagation();
-    document.getElementById('lang-dropdown').classList.toggle('open');
-}
-
-document.addEventListener('click', function() {
-    document.getElementById('lang-dropdown').classList.remove('open');
-});
     }
 </script>
 
