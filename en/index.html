@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
             --accent: #00ff41; 
             --border: 2px solid #333;
         }
+        
 
         body { background-color: var(--bg); color: var(--text); font-family: 'M PLUS 1m', monospace; line-height: 1.4; margin: 0; padding: 20px; text-transform: lowercase; }
         header, section, .archive-item { background-color: var(--bg); border: var(--border); padding: 20px; margin-bottom: 20px; }
@@ -42,7 +43,7 @@
             box-sizing: border-box;
         }
         .lang-dropdown.open { display: block; }
-        .lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
+        .lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; text-align: left; }
         .lang-dropdown a:hover { background: #ff8c00; color: #000; }
 
         /* HAMBURGER */
@@ -81,17 +82,21 @@
     </style>
 </head>
 <body>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <header>
-    <h1>BICIKLOPOPRAVLJAONA</h1>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <nav id="main-nav">
-        <a href="index.html" class="btn active">[ home ]</a>
+    <a href="/hr/index.html" style="text-decoration: none;"> 
+        <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
+    </a>
+    <nav>
+        <a href="index.html" class="btn">[ home ]</a>
         <a href="about.html" class="btn">[ about ]</a>
-        <a href="qa.html" class="btn">[ q&a ]</a>
+        <a href="q&a.html" class="btn">[ q & a ]</a>
+        
         <div class="lang-selector">
             <button class="lang-current" onclick="toggleLang(event)">[ en ▾ ]</button>
+            
             <div class="lang-dropdown" id="lang-dropdown">
-                <a href="/hr/">[ hr ]</a>
+                <a href="/hr/index.html">[ hr ]</a>
             </div>
         </div>
     </nav>
@@ -99,43 +104,32 @@
 
 <div class="container">
     <main>
-        <section id="novosti"><div id="latest-post"><h2>workshop_news: ...</h2><h3>"loading..."</h3><p></p></div></section>
-        <section id="arhiva"><div class="archive-header"><h2>old_logs</h2><nav><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; older</a><a href="#" id="next-btn" class="btn-sm">newer &gt;&gt;</a></nav></div><div id="archive-container" class="archive-grid"></div></section>
-        <a href="comic.html" class="section-link" id="strip-link"><section id="strip"><h2>weekly_comic</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg" alt="Bicpop Comic Strip"><div class="comic-caption">"weekly comic"</div></div></section></a>
-        <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>micro_touring</h2><div id="tour-content"><p>we rode into the brandenburg woods with nothing but coffee and a spare tube. the route was 40km of gravel and bliss.</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
+        <section id="novosti"><div id="latest-post"><h2>novosti_iz_radione: ...</h2><h3>"loading..."</h3><p></p></div></section>
+        <section id="arhiva"><div class="archive-header"><h2>stari_logovi</h2><nav><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; starije</a><a href="#" id="next-btn" class="btn-sm">novije &gt;&gt;</a></nav></div><div id="archive-container" class="archive-grid"></div></section>
+        <a href="strip.html" class="section-link" id="strip-link"><section id="strip"><h2>tjedni_strip</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg"><div class="comic-caption">"tjedni strip"</div></div></section></a>
+        <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>micro_touring</h2><div id="tour-content"><p>...</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
     </main>
     <aside>
-        <section id="lokacija"><h2>location</h2><p>gunduliceva 1<br>courtyard<br>10000 zagreb</p><p>thu: 18:00 - 20:00</p></section>
-        <a href="gallery.html" class="section-link" id="galerija-link"><section id="galerija"><h2>gallery</h2><div id="gallery-container" class="gallery-grid"><img src="https://m2zk.neocities.org/image3.jpg"><img src="https://m2zk.neocities.org/image4.jpg"><img src="https://m2zk.neocities.org/image4.jpg"><img src="https://m2zk.neocities.org/image3.jpg"></div></section></a>
+        <section id="lokacija"><h2>lokacija</h2><p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p><p>cet: 18:00 - 20:00</p></section>
+        <a href="galerija.html" class="section-link" id="galerija-link"><section id="galerija"><h2>galerija</h2><div id="gallery-container" class="gallery-grid"><img src="https://m2zk.neocities.org/image3.jpg"><img src="https://m2zk.neocities.org/image4.jpg"></div></section></a>
     </aside>
 </div>
 <footer><p>Bicpop Bike Kitchen - Copyleft 2026</p></footer>
 
 <script>
     function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
-    
-    function toggleLang(event) {
-        event.stopPropagation();
-        document.getElementById('lang-dropdown').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function() {
-        document.getElementById('lang-dropdown').classList.remove('open');
-    });
+    function toggleLang(event) { event.stopPropagation(); document.getElementById('lang-dropdown').classList.toggle('open'); }
+    document.addEventListener('click', function() { document.getElementById('lang-dropdown').classList.remove('open'); });
 
     let allPosts = []; let archiveStart = 1; const itemsToShow = 2;
     function renderBlog() {
         if (allPosts.length === 0) return;
         const latest = allPosts[0];
-        document.getElementById('latest-post').innerHTML = `<h2>workshop_news: ${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
+        document.getElementById('latest-post').innerHTML = `<h2>novosti_iz_radione: ${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
         const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
-        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><span class="date">${post.date}</span><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
-        document.getElementById('prev-btn').style.opacity = ((archiveStart + itemsToShow) < allPosts.length) ? "1" : "0.2";
-        document.getElementById('next-btn').style.opacity = (archiveStart > 1) ? "1" : "0.2";
+        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
     }
-    fetch('/en/data/blog_en.json').then(res => res.json()).then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); });
-    document.getElementById('prev-btn').addEventListener('click', (e) => { e.preventDefault(); archiveStart += itemsToShow; renderBlog(); });
-    document.getElementById('next-btn').addEventListener('click', (e) => { e.preventDefault(); archiveStart = Math.max(1, archiveStart - itemsToShow); renderBlog(); });
+    fetch('/hr/data/blog.json').then(res => res.json()).then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); });
 </script>
 </body>
 </html>
