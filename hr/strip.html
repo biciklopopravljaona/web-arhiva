@@ -223,15 +223,25 @@
 </footer>
 
 <script>
+    // 1. Language Functions (Moved OUTSIDE of any other function)
+    function toggleLang(event) {
+        event.stopPropagation();
+        document.getElementById('lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function() {
+        document.getElementById('lang-dropdown').classList.remove('open');
+    });
+
+    // 2. Folder Switch Function
     function switchFolder(name) {
         document.querySelectorAll('.folder-link').forEach(el => el.classList.remove('active'));
         event.currentTarget.classList.add('active');
         document.getElementById('current-dir').innerText = 'current_dir: /' + name;
         document.getElementById('stream').scrollTop = 0;
-        // In the future, this function could fetch specific categories from gallery.json
     }
 
-    // CMS Fetch Logic
+    // 3. CMS Fetch Logic (Independent)
     fetch('/data/gallery.json').then(res => res.json()).then(data => {
         const photos = data.photos || [];
         if(photos.length > 0) {
@@ -243,14 +253,6 @@
             `).join('');
             document.getElementById('photo-content').innerHTML = html;
         }
-
-            function toggleLang(event) {
-        event.stopPropagation();
-        document.getElementById('lang-dropdown').classList.toggle('open');
-    }
- document.addEventListener('click', function() {
-        document.getElementById('lang-dropdown').classList.remove('open');
-    });
     });
 </script>
 
