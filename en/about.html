@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O NAMA | BICIKLOPOPRAVLJAONA</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Import M+ 1m from Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1m:wght@400;700&display=swap');
+       
 
         :root {
             --bg: #0a0a0a;
@@ -56,16 +57,26 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-
-        .btn {
-            background: none;
-            border: var(--border);
-            color: var(--text);
-            padding: 8px 12px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-family: 'M PLUS 1m', monospace;
-        }
+        /* Make header logo orange on hover */
+header a:hover h1 {
+    color: #ff8c00 !important; 
+    transition: color 0.2s ease;
+}
+/* Add this to your style block */
+img:hover {
+    filter: none;
+    border-color: var(--accent);
+    cursor: pointer;
+}
+     
+        /* Unified Button & Dropdown Styles */
+.btn, .lang-current { background: none; border: var(--border); color: var(--text); padding: 8px 12px; font-size: 0.9rem; font-family: 'M PLUS 1m', monospace; text-transform: lowercase; text-decoration: none; cursor: pointer; box-sizing: border-box; display: inline-flex; align-items: center; height: 38px; margin: 0; }
+.lang-current { color: #ff8c00; border-color: #ff8c00; }
+.lang-selector { position: relative; display: inline-block; z-index: 500; }
+.lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: -2px; background: var(--bg); border: var(--border); border-color: #ff8c00; z-index: 501; min-width: 100%; box-sizing: border-box; }
+.lang-dropdown.open { display: block; }
+.lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; text-align: left; }
+.lang-dropdown a:hover { background: #ff8c00; color: #000; }
 
         .btn:hover {
             background: var(--accent);
@@ -73,6 +84,7 @@
         }
         
         /* This goes in your <style> area */
+/* Add this right under your .btn:hover { ... } rule */
 .btn.active {
     background: var(--accent) !important;
     color: #000 !important;
@@ -165,70 +177,79 @@
 <body>
 
 <header>
-    <h1>BICIKLOPOPRAVLJAONA</h1>
+    <a href="/en/index.html" style="text-decoration: none;"> 
+        <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
+    </a>
     <nav>
         <a href="index.html" class="btn">[ pocetna ]</a>
-        <a href="about.html" class="btn active">[ o nama ]</a>
-        <a href="pitanja.html" class="btn">[ pitanja ]</a>
-        <a href="EN.html" class="btn">[ en ]</a>
+        <a href="about.html" class="btn">[ o nama ]</a>
+        <a href="q&a.html" class="btn">[ pitanja ]</a>
+        
+        <div class="lang-selector">
+            <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
+            
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="/hr/about.html">[ hr ]</a>
+            </div>
+        </div>
     </nav>
 </header>
 
 <div class="container">
     <main>
-        <section id="tko-smo">
-            <h2>tko_smo_mi?</h2>
-            <p>mi smo volonterski kolektiv. mi nismo servis u klasičnom smislu riječi. ovdje ne ostavljaš bicikl i ne plaćaš radne sate. ovdje učiš kako popraviti svoje prijevozno sredstvo uz našu pomoć i alat.</p>
-            <p>nastali smo iz potrebe za prostorom gdje se znanje dijeli, a ne prodaje. naša misija je jednostavna: što više bicikala na cesti, što manje dijelova u smeću.</p>
-            
+        <section id="who-we_are?">
+            <h2>who_we_are?</h2>
+            <p>we are a volunteer collective. we are not a traditional bike shop. here you don't leave your bike and pay for labor hours. here you learn how to fix your own transportation with our help and tools.</p>
+            <p>we emerged from the need for a space where knowledge is shared, not sold. our mission is simple: the more bikes on the road, the less parts in the trash.</p>
+
             <div class="stats-grid">
                 <div class="stat-item">
                     <span>1500+</span>
-                    zakrpanih guma
+                    tires fixed
                 </div>
                 <div class="stat-item">
                     <span>85L</span>
-                    popijene pive
+                    beers drunk
                 </div>
                 <div class="stat-item">
                     <span>1</span>
-                    gazda
+                    boss
                 </div>
             </div>
         </section>
 
         <section id="manifest">
             <div class="manifesto-box">
-                <h2>naš_manifest</h2>
+                <h2>our_manifest</h2>
                 <ul>
-                    <li>alat pripada onome tko ga koristi.</li>
-                    <li>znanje se množi dijeljenjem.</li>
-                    <li>popravi, ne bacaj.</li>
-                    <li>bicikl je alat oslobođenja.</li>
+                    <li>tool belongs to the one who uses it.</li>
+                    <li>knowledge multiplies through sharing.</li>
+                    <li>fix, don't throw away.</li>
+                    <li>the bicycle is a tool of liberation.</li>
                 </ul>
             </div>
         </section>
     </main>
 
     <aside>
-        <section id="volonteri">
-            <h2>ekipa</h2>
+        <section id="volunteers">
+            <h2>team</h2>
             <div class="team-grid">
                 <div class="team-member">
                     <img src="https://m2zk.neocities.org/image3.jpg" alt="Volonter 1">
-                    <span>marko_mehaničar</span>
+                    <span>marko_the_mechanic</span>
                 </div>
                 <div class="team-member">
                     <img src="https://m2zk.neocities.org/image4.jpg" alt="Volonter 2">
-                    <span>ana_lanac</span>
+                    <span>ana_</span>
                 </div>
             </div>
-            <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">uvijek tražimo nove ljude koji se ne boje masti na rukama. svrati četvrtkom.</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">always looking for new people who aren't afraid of grease on their hands. come on Thursday.</p>
         </section>
 
-        <section id="donacije">
-            <h2>donacije</h2>
-            <p>ubaci koji euro.</p>
+        <section id="donations">
+            <h2>donations</h2>
+            <p>put in some euros.</p>
         </section>
     </aside>
 </div>
@@ -236,6 +257,16 @@
 <footer>
     <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
 </footer>
+<script>
+    function toggleLang(event) {
+        event.stopPropagation();
+        document.getElementById('lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function() {
+        document.getElementById('lang-dropdown').classList.remove('open');
+    });
+</script>
 
 </body>
 </html>
