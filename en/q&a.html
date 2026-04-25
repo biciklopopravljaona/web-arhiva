@@ -52,15 +52,18 @@
             display: flex;
             gap: 10px;
         }
+        header a:hover h1 {
+    color: #ff8c00 !important; 
+    transition: color 0.2s ease;
+}
 
-        .btn {
-            background: none;
-            border: var(--border);
-            color: var(--text);
-            padding: 8px 12px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
+       .btn, .lang-current { background: none; border: var(--border); color: var(--text); padding: 8px 12px; font-size: 0.9rem; font-family: 'M PLUS 1m', monospace; text-transform: lowercase; text-decoration: none; cursor: pointer; box-sizing: border-box; display: inline-flex; align-items: center; height: 38px; margin: 0; }
+.lang-current { color: #ff8c00; border-color: #ff8c00; }
+.lang-selector { position: relative; display: inline-block; z-index: 500; }
+.lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: -2px; background: var(--bg); border: var(--border); border-color: #ff8c00; z-index: 501; min-width: 100%; box-sizing: border-box; }
+.lang-dropdown.open { display: block; }
+.lang-dropdown a { display: block; padding: 8px 12px; color: #ff8c00; text-decoration: none; font-size: 0.9rem; white-space: nowrap; text-align: left; }
+.lang-dropdown a:hover { background: #ff8c00; color: #000; }
 
         .btn:hover {
             background: var(--accent);
@@ -152,12 +155,21 @@
 <body>
 
 <header>
-    <h1>BICIKLOPOPRAVLJAONA</h1>
+    <a href="/hr/index.html" style="text-decoration: none;"> 
+        <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
+    </a>
     <nav>
-        <a href="index.html" class="btn">[ pocetna ]</a>
-        <a href="about.html" class="btn">[ o nama ]</a>
-        <a href="pitanja.html" class="btn active">[ pitanja ]</a>
-        <a href="EN.html" class="btn">[ en ]</a>
+        <a href="index.html" class="btn">[ home ]</a>
+        <a href="about.html" class="btn">[ about ]</a>
+        <a href="q&a.html" class="btn">[ q & a ]</a>
+        
+        <div class="lang-selector">
+            <button class="lang-current" onclick="toggleLang(event)">[ en ▾ ]</button>
+            
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="/hr/q&a.html">[ hr ]</a>
+            </div>
+        </div>
     </nav>
 </header>
 
@@ -222,6 +234,15 @@
     <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
 </footer>
 
+<script>
+    function toggleLang(event) {
+        event.stopPropagation();
+        document.getElementById('lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function() {
+        document.getElementById('lang-dropdown').classList.remove('open');
+    });
+</script>
 </body>
 </html>
-
