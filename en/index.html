@@ -84,13 +84,13 @@
 <body>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <header>
-    <a href="/en/index.html" style="text-decoration: none;"> 
+    <a href="/hr/index.html" style="text-decoration: none;"> 
         <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
     </a>
     <nav>
         <a href="index.html" class="btn">[ home ]</a>
         <a href="about.html" class="btn">[ about ]</a>
-        <a href="q&a.html" class="btn">[ q & a ]</a>
+        <a href="pitanja.html" class="btn">[ q & a ]</a>
         
         <div class="lang-selector">
             <button class="lang-current" onclick="toggleLang(event)">[ en ▾ ]</button>
@@ -105,13 +105,13 @@
 <div class="container">
     <main>
         <section id="novosti"><div id="latest-post"><h2>news_from_the_workshop: ...</h2><h3>"loading..."</h3><p></p></div></section>
-        <section id="arhiva"><div class="archive-header"><h2>old_logs</h2><nav><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; older</a><a href="#" id="next-btn" class="btn-sm">newer &gt;&gt;</a></nav></div><div id="archive-container" class="archive-grid"></div></section>
-        <a href="comic.html" class="section-link" id="strip-link"><section id="strip"><h2>weekly_comic</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg"><div class="comic-caption">"weekly_comic"</div></div></section></a>
+        <section id="arhiva"><div class="archive-header"><h2>stari_logovi</h2><nav><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; starije</a><a href="#" id="next-btn" class="btn-sm">novije &gt;&gt;</a></nav></div><div id="archive-container" class="archive-grid"></div></section>
+        <a href="comic.html" class="section-link" id="strip-link"><section id="strip"><h2>tjedni_strip</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg"><div class="comic-caption">"tjedni strip"</div></div></section></a>
         <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>micro_touring</h2><div id="tour-content"><p>...</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
-    </main
+    </main>
     <aside>
-        <section id="lokacija"><h2>location</h2><p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p><p>tuesday: 18:00 - 20:00</p></section>
-        <a href="gallery.html" class="section-link" id="galerija-link"><section id="galerija"><h2>gallery</h2><div id="gallery-container" class="gallery-grid"><img src="https://m2zk.neocities.org/image3.jpg"><img src="https://m2zk.neocities.org/image4.jpg"></div></section></a>
+        <section id="lokacija"><h2>lokacija</h2><p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p><p>cet: 18:00 - 20:00</p></section>
+        <a href="gallery.html" class="section-link" id="galerija-link"><section id="galerija"><h2>galerija</h2><div id="gallery-container" class="gallery-grid"><img src="https://m2zk.neocities.org/image3.jpg"><img src="https://m2zk.neocities.org/image4.jpg"></div></section></a>
     </aside>
 </div>
 <footer><p>Bicpop Bike Kitchen - Copyleft 2026</p></footer>
@@ -125,7 +125,7 @@
     function renderBlog() {
         if (allPosts.length === 0) return;
         const latest = allPosts[0];
-        document.getElementById('latest-post').innerHTML = `<h2>news_from_the_workshop: ${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
+        document.getElementById('latest-post').innerHTML = `<h2>novosti_iz_radione: ${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
         const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
         document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
     }
