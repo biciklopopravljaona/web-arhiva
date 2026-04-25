@@ -1,0 +1,26 @@
+<header>
+    <h1>BICIKLOPOPRAVLJAONA</h1>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav id="main-nav">
+        <a href="index.html" class="btn active">[ početna ]</a>
+        <a href="about.html" class="btn">[ o nama ]</a>
+        <a href="pitanja.html" class="btn">[ pitanja ]</a>
+        <div class="lang-selector">
+            <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="/en/">[ en ]</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
+    function toggleLang(event) { 
+        event.stopPropagation(); 
+        document.getElementById('lang-dropdown').classList.toggle('open'); 
+    }
+    document.addEventListener('click', function() { 
+        document.getElementById('lang-dropdown').classList.remove('open'); 
+    });
+</script>
