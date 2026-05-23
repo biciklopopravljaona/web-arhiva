@@ -173,36 +173,14 @@ img:hover {
             h1 { font-size: 2rem; }
         }
 
-         .hamburger { 
-        display: block; 
-        background: none;       /* Removes the default gray background */
-        font-family: 'M PLUS 1m', monospace; /* Keeps font unified */
-        outline: none; 
-        box-sizing: border-box;
-    }
+    
     </style>
 </head>
 <body>
 
-<header>
-    <a href="/hr/index.html" style="text-decoration: none;"> 
-        <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
-    </a>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav id="main-nav">
-        <a href="index.html" class="btn">[ pocetna ]</a>
-        <a href="about.html" class="btn active">[ o nama ]</a>
-        <a href="qa.html" class="btn">[ pitanja ]</a>
-        
-        <div class="lang-selector">
-            <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
-            
-            <div class="lang-dropdown" id="lang-dropdown">
-                <a href="/en/about.html">[ en ]</a>
-            </div>
-        </div>
-    </nav>
-</header>
+
+ <header id="nav-placeholder"></header>
+
 
 <div class="container">
     <main>
@@ -266,16 +244,7 @@ img:hover {
 <footer>
     <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
 </footer>
-<script>
-    function toggleLang(event) {
-        event.stopPropagation();
-        document.getElementById('lang-dropdown').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function() {
-        document.getElementById('lang-dropdown').classList.remove('open');
-    });
-</script>
+<script src="/script.js"></script>
 
 </body>
 </html>

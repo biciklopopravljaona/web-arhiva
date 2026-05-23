@@ -91,25 +91,7 @@
 </head>
 <body>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<header>
-    <a href="/hr/index.html" style="text-decoration: none;"> 
-        <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
-    </a>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav id="main-nav">
-        <a href="/hr/index.html" class="btn active">[ pocetna ]</a>
-        <a href="/hr/about.html" class="btn">[ o nama ]</a>
-        <a href="/hr/qa.html" class="btn">[ pitanja ]</a>
-        
-        <div class="lang-selector">
-            <button class="lang-current" onclick="toggleLang(event)">[ hr ▾ ]</button>
-            
-            <div class="lang-dropdown" id="lang-dropdown">
-                <a href="/en/index.html">[ en ]</a>
-            </div>
-        </div>
-    </nav>
-</header>
+<header id="nav-placeholder"></header>
 
 <div class="container">
     <main>
@@ -125,20 +107,6 @@
 </div>
 <footer><p>Bicpop Bike Kitchen - Copyleft 2026</p></footer>
 
-<script>
-    function toggleMenu() { document.getElementById('main-nav').classList.toggle('open'); }
-    function toggleLang(event) { event.stopPropagation(); document.getElementById('lang-dropdown').classList.toggle('open'); }
-    document.addEventListener('click', function() { document.getElementById('lang-dropdown').classList.remove('open'); });
-
-    let allPosts = []; let archiveStart = 1; const itemsToShow = 2;
-    function renderBlog() {
-        if (allPosts.length === 0) return;
-        const latest = allPosts[0];
-        document.getElementById('latest-post').innerHTML = `<h2>novosti_iz_radione: ${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
-        const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
-        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
-    }
-    fetch('/hr/data/blog.json').then(res => res.json()).then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); });
-</script>
+<script src="/script.js"></script>
 </body>
 </html>
