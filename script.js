@@ -2,52 +2,66 @@ async function loadNavigation() {
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (!navPlaceholder) return;
 
-    // Detect if we are in the English or Croatian folder
+    // Detect folder path to fetch the matching template file
     const isEnglish = window.location.pathname.includes('/en/');
+    const navFile = isEnglish ? 'nav-en.html' : 'nav-hr.html';
     
-    // Path to your shared nav.html in the _includes folder
-    // Note: Since nav.html is outside the hr/en folders, we use the root path
     try {
-        const response = await fetch('/_includes/nav.html');
-        if (!response.ok) throw new Error('Nav not found');
+        const response = await fetch(`/_includes/${navFile}`);
+        if (!response.ok) throw new Error(`Template ${navFile} not found`);
         let data = await response.text();
 
-        // If we are on an English page, we swap the text manually 
-        // OR you can create two separate nav files. 
-        // For now, let's keep it simple:
         navPlaceholder.innerHTML = data;
         
+        // Setup highlighting and localization adjustments
         highlightActiveLink();
+        setupLanguageSwitcher(isEnglish);
     } catch (err) {
         console.error("Bicpop error:", err);
     }
 }
 
-// Burger Menu Logic
+// Mobile Burger Toggle
 function toggleMenu(event) {
     if (event) event.stopPropagation();
     document.getElementById('main-nav')?.classList.toggle('open');
 }
 
-// Lang Dropdown Logic
+// Language Selector Dropdown Toggle
 function toggleLang(event) {
     if (event) event.stopPropagation();
     document.getElementById('lang-dropdown')?.classList.toggle('open');
 }
 
-// Close on outside click
+// Global outside-click closing behavior
 document.addEventListener('click', () => {
     document.getElementById('main-nav')?.classList.remove('open');
     document.getElementById('lang-dropdown')?.classList.remove('open');
 });
 
+// Dynamic Highlighter
 function highlightActiveLink() {
     const path = window.location.pathname;
     document.querySelectorAll('.btn').forEach(link => {
-        if (path.includes(link.getAttribute('href'))) {
+        const href = link.getAttribute('href');
+        if (path.includes(href)) {
             link.classList.add('active');
         }
     });
+}
+
+// Dynamically changes the switcher link text/route to align language tracks
+function setupLanguageSwitcher(isEnglish) {
+    const langSwitchLink = document.getElementById('lang-switch-link');
+    if (!langSwitchLink) return;
+
+    const currentFilename = window.location.pathname.split('/').pop() || 'index.html';
+    
+    if (isEnglish) {
+        langSwitchLink.href = '/hr/' + currentFilename;
+    } else {
+        langSwitchLink.href = '/en/' + currentFilename;
+    }
 }
 
 loadNavigation();
