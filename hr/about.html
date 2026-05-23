@@ -172,6 +172,14 @@ img:hover {
             .container { grid-template-columns: 1fr; }
             h1 { font-size: 2rem; }
         }
+
+         .hamburger { 
+        display: block; 
+        background: none;       /* Removes the default gray background */
+        font-family: 'M PLUS 1m', monospace; /* Keeps font unified */
+        outline: none; 
+        box-sizing: border-box;
+    }
     </style>
 </head>
 <body>
@@ -180,7 +188,8 @@ img:hover {
     <a href="/hr/index.html" style="text-decoration: none;"> 
         <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
     </a>
-    <nav>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav id="main-nav">
         <a href="index.html" class="btn">[ pocetna ]</a>
         <a href="about.html" class="btn active">[ o nama ]</a>
         <a href="qa.html" class="btn">[ pitanja ]</a>
