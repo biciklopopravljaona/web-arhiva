@@ -79,6 +79,14 @@
             .container { display: flex; flex-direction: column; }
             .archive-grid { grid-template-columns: 1fr; }
         }
+
+        .hamburger { 
+        display: block; 
+        background: none;       /* Removes the default gray background */
+        font-family: 'M PLUS 1m', monospace; /* Keeps font unified */
+        outline: none; 
+        box-sizing: border-box;
+    }
     </style>
 </head>
 <body>
@@ -88,7 +96,7 @@
         <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
     </a>
     <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav>
+    <nav id="main-nav">
         <a href="/hr/index.html" class="btn active">[ pocetna ]</a>
         <a href="/hr/about.html" class="btn">[ o nama ]</a>
         <a href="/hr/qa.html" class="btn">[ pitanja ]</a>
