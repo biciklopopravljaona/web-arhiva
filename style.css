@@ -1,0 +1,21 @@
+/* shared nav + hamburger styles */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    border: var(--border);
+    color: var(--accent);
+    padding: 5px 12px;
+    font-size: 1.4rem;
+    background: none;
+    font-family: 'M PLUS 1m', monospace;
+    outline: none;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    header { flex-wrap: nowrap !important; padding: 10px 15px !important; position: relative !important; }
+    h1 { font-size: 1.4rem !important; letter-spacing: -1px !important; }
+    .hamburger { display: block; }
+    nav#main-nav { display: none; flex-direction: column; width: 100%; background: var(--bg); border: var(--border); padding: 10px; position: absolute; top: 100%; left: 0; z-index: 100; box-sizing: border-box; }
+    nav#main-nav.open { display: flex; }
+}
