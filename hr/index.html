@@ -52,24 +52,13 @@
         .section-link { text-decoration: none; color: inherit; display: block; }
         .section-link h2:hover { background: var(--accent); color: #000; cursor: pointer; }
 
-        .container { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-        h2 { border-bottom: var(--border); padding-bottom: 5px; color: var(--accent); margin-top: 0; font-weight: 700; transition: 0.2s; }
-        img { max-width: 100%; height: auto; filter: grayscale(100%) contrast(120%); border: 1px solid #444; display: block; margin-bottom: 10px; }
-        img:hover { filter: none; border-color: var(--accent); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; border: 1px solid #444; background: #111; }
-        .gallery-grid img { margin-bottom: 0; border: 2px solid #000; }
-        .comic-frame { background: #fff; padding: 10px; border: 4px solid #000; color: #000; }
-        .comic-frame img { filter: none; border: 2px solid #000; }
-        .comic-caption { font-weight: 700; text-align: center; font-size: 1.2rem; margin-top: 10px; }
-        .tour-images { display: flex; gap: 10px; margin-top: 15px; }
-        .tour-images img { width: 48%; }
-        .archive-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border: none; padding: 0; }
-        .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; align-items: start; }
-        .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
-        .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
-        .btn-sm { border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; text-decoration: none; font-size: 0.7rem; }
-        footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
-
+       .container { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        #novosti    { grid-column: 1; grid-row: 1; }
+        #arhiva     { grid-column: 1; grid-row: 2; }
+        #strip-link { grid-column: 1; grid-row: 3; }
+        #tour-link  { grid-column: 1; grid-row: 4; }
+        #lokacija   { grid-column: 2; grid-row: 1; }
+        #galerija-link { grid-column: 2; grid-row: 2; }
         @media (max-width: 768px) {
             header { flex-wrap: nowrap; padding: 10px 15px; }
             h1 { font-size: 1.4rem; letter-spacing: -1px; } 
@@ -78,8 +67,7 @@
             nav.open { display: flex; }
             .container { display: flex; flex-direction: column; }
             .archive-grid { grid-template-columns: 1fr; }
-            main { order: 2; }
-            aside { order: 1; }   /* moves lokacija + galerija above main content */
+              /* moves lokacija + galerija above main content */
         }
 
        
@@ -91,16 +79,12 @@
 <header id="nav-placeholder"></header>
 
 <div class="container">
-    <main>
-        <section id="novosti"><div id="latest-post"><h2>novosti_iz_radione: ...</h2><h3>"loading..."</h3><p></p></div></section>
-        <section id="arhiva"><div class="archive-header"><h2>stari_logovi</h2><nav><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; starije</a><a href="#" id="next-btn" class="btn-sm">novije &gt;&gt;</a></nav></div><div id="archive-container" class="archive-grid"></div></section>
-        <a href="strip.html" class="section-link" id="strip-link"><section id="strip"><h2>tjedni_strip</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg"><div class="comic-caption">"tjedni strip"</div></div></section></a>
-        <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>micro_touring</h2><div id="tour-content"><p>...</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
-    </main>
-    <aside>
-        <section id="lokacija"><h2>lokacija</h2><p>gunduliceva 1<br>dvoriste<br>10000 zagreb</p><p>cet: 18:00 - 20:00</p></section>
-        <a href="galerija.html" class="section-link" id="galerija-link"><section id="galerija"><h2>galerija</h2><div id="gallery-container" class="gallery-grid"><img src="https://m2zk.neocities.org/image3.jpg"><img src="https://m2zk.neocities.org/image4.jpg"></div></section></a>
-    </aside>
+    <section id="novosti">...</section>
+    <section id="arhiva">...</section>
+    <a href="strip.html" class="section-link" id="strip-link">...</a>
+    <a href="microtouring.html" class="section-link" id="tour-link">...</a>
+    <section id="lokacija">...</section>
+    <a href="galerija.html" class="section-link" id="galerija-link">...</a>
 </div>
 <footer><p>Bicpop Bike Kitchen - Copyleft 2026</p></footer>
 
