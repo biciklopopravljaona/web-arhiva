@@ -14,7 +14,7 @@
 @media (max-width: 768px) {
     header { flex-wrap: nowrap !important; padding: 10px 15px !important; position: relative !important; }
     h1 { font-size: 1.4rem !important; letter-spacing: -1px !important; }
-    .hamburger { display: block; }
+    .hamburger { display: block !important; }
     nav#main-nav { display: none; flex-direction: column; width: 100%; background: var(--bg); border: var(--border); padding: 10px; position: absolute; top: 100%; left: 0; z-index: 100; box-sizing: border-box; }
     nav#main-nav.open { display: flex; }
     nav#main-nav .lang-selector { align-self: flex-start; }
