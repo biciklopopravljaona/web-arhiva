@@ -41,10 +41,10 @@ document.addEventListener('click', () => {
 
 // Dynamic Highlighter
 function highlightActiveLink() {
-    const path = window.location.pathname;
+    const filename = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.btn').forEach(link => {
-        const href = link.getAttribute('href');
-        if (path.includes(href)) {
+        const href = link.getAttribute('href') || '';
+        if (href.endsWith(filename)) {
             link.classList.add('active');
         }
     });
