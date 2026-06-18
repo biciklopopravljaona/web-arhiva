@@ -172,27 +172,11 @@
             .directory-tree { height: 200px; border-right: none; border-bottom: var(--border); }
         }
     </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<header>
-    <a href="/en/index.html" style="text-decoration: none;"> 
-        <h1 style="color: var(--accent); margin: 0;">BICIKLOPOPRAVLJAONA</h1> 
-    </a>
-    <nav>
-        <a href="index.html" class="btn">[ home ]</a>
-        <a href="about.html" class="btn">[ about ]</a>
-        <a href="qa.html" class="btn">[ q & a ]</a>
-        
-        <div class="lang-selector">
-            <button class="lang-current" onclick="toggleLang(event)">[ en ▾ ]</button>
-            
-            <div class="lang-dropdown" id="lang-dropdown">
-                <a href="/hr/strip.html">[ hr ]</a>
-            </div>
-        </div>
-    </nav>
-</header>
+<header id="nav-placeholder"></header>
 
 </header>
 
@@ -227,39 +211,7 @@
     <p>Bicpop Bike Kitchen - Copyleft 2026 - Just grease.</p>
 </footer>
 
-<script>
-    // 1. Language Functions (Moved OUTSIDE of any other function)
-    function toggleLang(event) {
-        event.stopPropagation();
-        document.getElementById('lang-dropdown').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function() {
-        document.getElementById('lang-dropdown').classList.remove('open');
-    });
-
-    // 2. Folder Switch Function
-    function switchFolder(name) {
-        document.querySelectorAll('.folder-link').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        document.getElementById('current-dir').innerText = 'current_dir: /' + name;
-        document.getElementById('stream').scrollTop = 0;
-    }
-
-    // 3. CMS Fetch Logic (Independent)
-    fetch('/data/strip.json').then(res => res.json()).then(data => {
-        const photos = data.photos || [];
-        if(photos.length > 0) {
-            const html = photos.reverse().map((p, index) => `
-                <div class="photo-block">
-                    <img src="${p.image}" alt="${p.title}">
-                    <div class="photo-meta"><span>[FILE_00${index + 1}]</span> ${p.title}.jpg // ${p.date || '2026'}</div>
-                </div>
-            `).join('');
-            document.getElementById('photo-content').innerHTML = html;
-        }
-    });
-</script>
+<script src="/script.js"></script>
 
 </body>
 </html>
