@@ -92,6 +92,8 @@
         const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
         document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
     }
+    document.getElementById('prev-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart + itemsToShow < allPosts.length) { archiveStart += itemsToShow; renderBlog(); } });
+    document.getElementById('next-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart > 1) { archiveStart -= itemsToShow; renderBlog(); } });
     fetch('/en/data/blog.json').then(res => res.json()).then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); });
 </script>
 </body>
