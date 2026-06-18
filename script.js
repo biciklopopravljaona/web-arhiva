@@ -56,11 +56,22 @@ function setupLanguageSwitcher(isEnglish) {
     if (!langSwitchLink) return;
 
     const currentFilename = window.location.pathname.split('/').pop() || 'index.html';
-    
+
+    const enToHr = {
+        'comic.html': 'strip.html',
+        'gallery.html': 'galerija.html'
+    };
+    const hrToEn = {
+        'strip.html': 'comic.html',
+        'galerija.html': 'gallery.html'
+    };
+
     if (isEnglish) {
-        langSwitchLink.href = '/hr/' + currentFilename;
+        const hrFilename = enToHr[currentFilename] || currentFilename;
+        langSwitchLink.href = '/hr/' + hrFilename;
     } else {
-        langSwitchLink.href = '/en/' + currentFilename;
+        const enFilename = hrToEn[currentFilename] || currentFilename;
+        langSwitchLink.href = '/en/' + enFilename;
     }
 }
 
