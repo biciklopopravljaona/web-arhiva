@@ -1,5 +1,3 @@
-Style · CSS
-/* shared nav + hamburger styles */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -12,7 +10,7 @@ Style · CSS
     outline: none;
     box-sizing: border-box;
 }
- 
+
 @media (max-width: 768px) {
     header { flex-wrap: nowrap !important; padding: 10px 15px !important; position: relative !important; }
     h1 { font-size: 1.4rem !important; letter-spacing: -1px !important; }
