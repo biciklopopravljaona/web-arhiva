@@ -197,22 +197,72 @@
             <p>loading objects... image buffer ready.</p>
         </div>
 
-        <div id="photo-content">
-            <div class="photo-block">
-                <img src="https://m2zk.neocities.org/zine/sljeme.jpg" alt="Sljeme">
-                <div class="photo-meta"><span>[FILE_001]</span> sljeme_uspon.jpg // 2026.01.15</div>
-            </div>
-            <div class="photo-block">
-                <img src="https://m2zk.neocities.org/zine/samobor.jpg" alt="Samobor">
-                <div class="photo-meta"><span>[FILE_002]</span> samobor_gravel.jpg // 2026.01.20</div>
-            </div>
-        </div>
+        <div id="photo-content"></div>
     </div>
 </div>
 
 <footer>
     <p>Bicpop Bike Kitchen - Copyleft 2026 - No tracking. No cookies. Just grease.</p>
 </footer>
+
+<script>
+let galleryPhotos = [];
+let currentFolder = 'terenske_voznje_2026';
+
+const folderLabels = {
+    terenske_voznje_2026: '/terenske_voznje_2026',
+    radiona_kaos: '/radiona_kaos_winter',
+    donacije: '/donacije_i_projekti',
+    nocne_voznje: '/nocna_kritična_masa'
+};
+
+function switchFolder(folder) {
+    currentFolder = folder;
+    document.getElementById('current-dir').textContent = 'current_dir: ' + folderLabels[folder];
+
+    document.querySelectorAll('.folder-link').forEach(link => link.classList.remove('active'));
+    document.querySelector(`.folder-link[onclick="switchFolder('${folder}')"]`)?.classList.add('active');
+
+    renderGallery();
+}
+
+function renderGallery() {
+    const container = document.getElementById('photo-content');
+    const filtered = galleryPhotos.filter(p => p.folder === currentFolder);
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<p>no files in this directory yet.</p>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map((photo, i) => `
+        <div class="photo-block">
+            <img src="${photo.image}" alt="${escapeHtml(photo.title || '')}">
+            <div class="photo-meta">
+                <span>[FILE_${String(i + 1).padStart(3, '0')}]</span>
+                ${escapeHtml(photo.title || '')}${photo.date ? ' // ' + escapeHtml(photo.date) : ''}
+            </div>
+        </div>
+    `).join('');
+}
+
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+}
+
+fetch('/hr/data/gallery.json')
+    .then(res => res.json())
+    .then(data => {
+        galleryPhotos = data.photos || [];
+        renderGallery();
+    })
+    .catch(err => {
+        console.error("Bicpop gallery error:", err);
+        document.getElementById('photo-content').innerHTML = `<p>error loading gallery.</p>`;
+    });
+</script>
 
 <script src="/script.js"></script>
 
