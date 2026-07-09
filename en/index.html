@@ -85,16 +85,22 @@
 <script src="/script.js"></script>
 <script>
     let allPosts = []; let archiveStart = 1; const itemsToShow = 2;
-    function renderBlog() {
-        if (allPosts.length === 0) return;
-        const latest = allPosts[0];
-        document.getElementById('latest-post').innerHTML = `<h2>news_from_the_workshop:<br>${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
-        const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
-        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
-    }
+function renderBlog() {
+    if (allPosts.length === 0) return;
+    const latest = allPosts[0];
+    document.getElementById('latest-post').innerHTML = `<h2>news_from_the_workshop:<br>${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
+    const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
+    document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
+}
     document.getElementById('prev-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart + itemsToShow < allPosts.length) { archiveStart += itemsToShow; renderBlog(); } });
     document.getElementById('next-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart > 1) { archiveStart -= itemsToShow; renderBlog(); } });
-    fetch('/en/data/blog.json').then(res => res.json()).then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); });
+   fetch('/en/data/blog_en.json')
+    .then(res => res.json())
+    .then(data => { allPosts = (data.entries || []).reverse(); renderBlog(); })
+    .catch(err => {
+        console.error("Bicpop EN blog error:", err);
+        document.getElementById('latest-post').innerHTML = `<h3>error loading posts</h3>`;
+    });
 </script>
 </body>
 </html>
