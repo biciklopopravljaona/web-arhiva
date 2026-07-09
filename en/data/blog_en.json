@@ -1,9 +1,24 @@
 {
   "entries": [
     {
-      "date": "2026-04-01",
-      "title": "Test 2",
-      "content": "Helloa"
+      "date": "2026-07-09",
+      "title": "New post",
+      "content": "new post"
+    },
+    {
+      "date": "2026-07-09",
+      "title": "jos jedan",
+      "content": "za test"
+    },
+    {
+      "date": "2026-07-09",
+      "title": "test 2",
+      "content": "test 2"
+    },
+    {
+      "date": "2026-07-09",
+      "title": "test 3",
+      "content": "test 3"
     }
   ]
 }
