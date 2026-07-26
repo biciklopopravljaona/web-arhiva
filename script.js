@@ -81,7 +81,11 @@ async function loadBlog() {
         if (!response.ok) throw new Error('blog.json not found');
         const data = await response.json();
 
-        blogEntries = (data.entries || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+        blogEntries = (data.entries || []).map((entry, i) => ({ ...entry, _idx: i })).sort((a, b) => {
+    const dateDiff = new Date(b.date) - new Date(a.date);
+    if (dateDiff !== 0) return dateDiff;
+    return b._idx - a._idx;
+});
 
         if (blogEntries.length === 0) {
             latestPost.innerHTML = `<h3>nema novosti</h3><p></p>`;
