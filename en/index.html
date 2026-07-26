@@ -97,7 +97,11 @@
     fetch('/en/data/blog_en.json')
         .then(res => res.json())
         .then(data => {
-            allPosts = (data.entries || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+            allPosts = (data.entries || []).map((entry, i) => ({ ...entry, _idx: i })).sort((a, b) => {
+    const dateDiff = new Date(b.date) - new Date(a.date);
+    if (dateDiff !== 0) return dateDiff;
+    return b._idx - a._idx;
+});
             renderBlog();
         })
         .catch(err => {
