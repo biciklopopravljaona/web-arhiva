@@ -5,6 +5,12 @@
       "title": "Test fotka",
       "folder": "terenske_voznje_2026",
       "date": "07/07/2026"
+    },
+    {
+      "title": "nova fotka",
+      "image": "/hr/images/uploads/screenshot-2025-01-11-at-20.17.39.png",
+      "date": "26.07.2026.",
+      "folder": "radiona_kaos"
     }
   ]
 }
