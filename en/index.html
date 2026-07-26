@@ -60,6 +60,21 @@
         .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
         .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
         .btn-sm { border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; text-decoration: none; font-size: 0.7rem; }
+        .archive-nav {
+            display: inline-flex;
+            border: 1px solid var(--accent);
+        }
+        .archive-nav .btn-sm {
+            border: none;
+            padding: 4px 10px;
+        }
+        .archive-nav .btn-sm:first-child {
+            border-right: 1px solid var(--accent);
+        }
+        .archive-nav .btn-sm:hover {
+            background: var(--accent);
+            color: #000;
+        }
         footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
 
         @media (max-width: 768px) {
@@ -74,7 +89,7 @@
 
 <div class="container">
     <section id="novosti"><div id="latest-post"><h2>news from the workshop: ...</h2><h3>"loading..."</h3><p></p></div></section>
-    <section id="arhiva"><h2>older posts</h2><div id="archive-container" class="archive-grid"></div><div class="archive-nav"><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; older</a><a href="#" id="next-btn" class="btn-sm">newer &gt;&gt;</a></div></section>
+    <section id="arhiva"><h2>older posts</h2><div id="archive-container" class="archive-grid"></div><div class="archive-nav"><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; newer</a><a href="#" id="next-btn" class="btn-sm">older &gt;&gt;</a></div></section>
     <a href="comic.html" class="section-link" id="strip-link"><section id="strip"><h2>weekly comic</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg"><div class="comic-caption">"weekly comic"</div></div></section></a>
     <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>microtouring</h2><div id="tour-content"><p>...</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
     <section id="lokacija"><h2>location</h2><p>gunduliceva 1<br>courtyard<br>10000 zagreb</p><p>tuesday: 18:00 - 20:00</p></section>
@@ -98,10 +113,10 @@
         .then(res => res.json())
         .then(data => {
             allPosts = (data.entries || []).map((entry, i) => ({ ...entry, _idx: i })).sort((a, b) => {
-    const dateDiff = new Date(b.date) - new Date(a.date);
-    if (dateDiff !== 0) return dateDiff;
-    return b._idx - a._idx;
-});
+                const dateDiff = new Date(b.date) - new Date(a.date);
+                if (dateDiff !== 0) return dateDiff;
+                return b._idx - a._idx;
+            });
             renderBlog();
         })
         .catch(err => {
