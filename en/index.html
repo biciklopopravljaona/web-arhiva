@@ -101,12 +101,17 @@
 <script>
     let allPosts = []; let archiveStart = 1; const itemsToShow = 2;
     function renderBlog() {
-        if (allPosts.length === 0) return;
-        const latest = allPosts[0];
-        document.getElementById('latest-post').innerHTML = `<h2>news from the workshop:<br>${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
-        const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
-        document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
-    }
+    if (allPosts.length === 0) return;
+    const latest = allPosts[0];
+    document.getElementById('latest-post').innerHTML = `<h2>news from the workshop:<br>${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
+    const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
+    document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p>${post.content.substring(0, 100)}...</p></div>`).join('');
+
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    if (prevBtn) prevBtn.style.opacity = archiveStart <= 1 ? '0.3' : '1';
+    if (nextBtn) nextBtn.style.opacity = (archiveStart + itemsToShow >= allPosts.length) ? '0.3' : '1';
+}
     document.getElementById('prev-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart + itemsToShow < allPosts.length) { archiveStart += itemsToShow; renderBlog(); } });
     document.getElementById('next-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart > 1) { archiveStart -= itemsToShow; renderBlog(); } });
     fetch('/en/data/blog_en.json?t=' + Date.now())
