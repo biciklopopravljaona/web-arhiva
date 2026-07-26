@@ -69,7 +69,7 @@ if (!window.location.pathname.includes('/en/')) {
     loadBlog();
 }
 
-const POSTS_PER_PAGE = 3;
+const POSTS_PER_PAGE = 2;
 let blogEntries = [];
 let archivePage = 0;
 
