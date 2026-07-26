@@ -65,7 +65,9 @@ function setupLanguageSwitcher(isEnglish) {
 }
 
 loadNavigation();
-loadBlog();
+if (!window.location.pathname.includes('/en/')) {
+    loadBlog();
+}
 
 const POSTS_PER_PAGE = 4;
 let blogEntries = [];
