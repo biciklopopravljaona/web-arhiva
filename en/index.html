@@ -88,7 +88,7 @@
 <header id="nav-placeholder"></header>
 
 <div class="container">
-    <section id="novosti"><div id="latest-post"><h2>news from the workshop: ...</h2><h3>"loading..."</h3><p></p></div></section>
+    <section id="novosti"><h2>news from the workshop</h2><div id="latest-post"><h3>"loading..."</h3><p></p></div></section>
     <section id="arhiva"><h2>older posts</h2><div id="archive-container" class="archive-grid"></div><div class="archive-nav"><a href="#" id="prev-btn" class="btn-sm">&lt;&lt; newer</a><a href="#" id="next-btn" class="btn-sm">older &gt;&gt;</a></div></section>
     <a href="comic.html" class="section-link" id="strip-link"><section id="strip"><h2>weekly comic</h2><div id="comic-container" class="comic-frame"><img src="https://m2zk.neocities.org/bicpopstrip.jpg"><div class="comic-caption">"weekly comic"</div></div></section></a>
     <a href="microtouring.html" class="section-link" id="tour-link"><section id="micro-touring"><h2>microtouring</h2><div id="tour-content"><p>...</p><div class="tour-images"><img src="https://m2zk.neocities.org/zine/sljeme.jpg"><img src="https://m2zk.neocities.org/zine/samobor.jpg"></div></div></section></a>
@@ -103,7 +103,7 @@
     function renderBlog() {
     if (allPosts.length === 0) return;
     const latest = allPosts[0];
-    document.getElementById('latest-post').innerHTML = `<h2>news from the workshop:<br>${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
+    document.getElementById('latest-post').innerHTML = `<h3>${latest.title}</h3><p><em>${latest.date}</em></p><p>${latest.content}</p>`;
     const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
     document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><strong>${post.title}</strong><span><em>${post.date}</em></span><p>${post.content.substring(0, 100)}...</p></div>`).join('');
     const prevBtn = document.getElementById('prev-btn');
