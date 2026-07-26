@@ -63,6 +63,7 @@ collections:
                   - {label: "Radiona kaos winter", value: "radiona_kaos"}
                   - {label: "Donacije i projekti", value: "donacije"}
                   - {label: "Nocna kriticna masa", value: "nocne_voznje"}
+                  - {label: "Novi naziv foldera", value: "novi_folder_slug"}
                   
       - name: "strip"
         label: "Strip"
