@@ -60,6 +60,21 @@
         .archive-item { background: #111; padding: 15px; display: flex; flex-direction: column; transition: all 0.2s ease; margin-bottom: 0; }
         .archive-item:hover { border-color: var(--accent); background: #1a1a1a; cursor: pointer; }
         .btn-sm { border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; text-decoration: none; font-size: 0.7rem; }
+        .archive-nav {
+            display: inline-flex;
+            border: 1px solid var(--accent);
+        }
+        .archive-nav .btn-sm {
+            border: none;
+            padding: 4px 10px;
+        }
+        .archive-nav .btn-sm:first-child {
+            border-right: 1px solid var(--accent);
+        }
+        .archive-nav .btn-sm:hover {
+            background: var(--accent);
+            color: #000;
+        }
         footer { text-align: center; font-size: 0.8rem; margin-top: 40px; padding: 20px; border-top: var(--border); opacity: 0.6; }
 
         @media (max-width: 768px) {
