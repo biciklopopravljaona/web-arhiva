@@ -21,7 +21,7 @@ collections:
             widget: "list"
             fields:
               - {label: "Naslov", name: "title", widget: "string"}
-              - {label: "Datum", name: "date", widget: "date", format: "YYYY-MM-DD"}
+              - {label: "Datum", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm", date_format: "YYYY-MM-DD", time_format: "HH:mm"}
               - {label: "Sadržaj", name: "content", widget: "text"}
       
       - name: "posts_en"
