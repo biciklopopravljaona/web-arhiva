@@ -94,7 +94,7 @@
     }
     document.getElementById('prev-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart + itemsToShow < allPosts.length) { archiveStart += itemsToShow; renderBlog(); } });
     document.getElementById('next-btn').addEventListener('click', e => { e.preventDefault(); if (archiveStart > 1) { archiveStart -= itemsToShow; renderBlog(); } });
-    fetch('/en/data/blog_en.json')
+    fetch('/en/data/blog_en.json?t=' + Date.now())
         .then(res => res.json())
         .then(data => {
             allPosts = (data.entries || []).map((entry, i) => ({ ...entry, _idx: i })).sort((a, b) => {

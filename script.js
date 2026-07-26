@@ -6,7 +6,7 @@ async function loadNavigation() {
     const navFile = isEnglish ? 'nav-en.html' : 'nav-hr.html';
     
     try {
-        const response = await fetch(`/_includes/${navFile}`);
+       const response = await fetch('/hr/data/blog.json?t=' + Date.now());
         if (!response.ok) throw new Error(`Template ${navFile} not found`);
         let data = await response.text();
         navPlaceholder.innerHTML = data;
