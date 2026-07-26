@@ -105,7 +105,7 @@
     const latest = allPosts[0];
     document.getElementById('latest-post').innerHTML = `<h2>news from the workshop:<br>${latest.date}</h2><h3>"${latest.title}"</h3><p>${latest.content}</p>`;
     const archiveItems = allPosts.slice(archiveStart, archiveStart + itemsToShow);
-    document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4>${post.title}</h4><p><em>${post.date}</em></p><p>${post.content.substring(0, 100)}...</p></div>`).join('');
+    document.getElementById('archive-container').innerHTML = archiveItems.map(post => `<div class="archive-item"><h4 style="margin-bottom: 4px;">${post.title}</h4><span style="display: block; margin-bottom: 8px;"><em>${post.date}</em></span><p style="margin: 0;">${post.content.substring(0, 100)}...</p></div>`).join('');
 
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
